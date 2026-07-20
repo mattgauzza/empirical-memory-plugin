@@ -1,0 +1,11 @@
+{
+  "mcpServers": {
+    "empirical": {
+      "type": "http",
+      "url": "https://empirical.gauzza.com/mcp",
+      "oauth": {
+        "clientId": "mgauzza_78wj52"
+      }
+    }
+  }
+}

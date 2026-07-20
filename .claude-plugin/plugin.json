@@ -1,0 +1,13 @@
+{
+  "name": "empirical-memory",
+  "version": "1.0.0",
+  "description": "Cross-project personal memory for Claude Code. Recalls prior decisions, preferences, and conventions across sessions and projects, and persists new durable ones as you work.",
+  "author": {
+    "name": "Matt Gauzza",
+    "email": "mgauzza@gmail.com"
+  },
+  "homepage": "https://empirical.gauzza.com",
+  "repository": "https://github.com/mattgauzza/empirical-memory-plugin",
+  "license": "MIT",
+  "keywords": ["memory", "context", "mcp", "productivity", "personal-assistant"]
+}
