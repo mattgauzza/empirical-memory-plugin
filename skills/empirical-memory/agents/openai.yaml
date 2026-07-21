@@ -1,0 +1,4 @@
+interface:
+  display_name: "Empirical Memory"
+  short_description: "Recall and save durable project context with Empirical."
+  default_prompt: "Use Empirical to query relevant context before work and save durable decisions afterward."
