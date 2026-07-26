@@ -11,8 +11,8 @@ don't have to re-explain context you've already given elsewhere.
 
 ## What this plugin installs
 
-- A skill (`skills/empirical-memory/SKILL.md`) that tells your agent when to query and persist
-  memory during a session.
+- Skills (`skills/empirical-memory/` and `skills/empirical-work-history/`) that tell your agent
+  when to query, persist, and summarize durable work history during a session.
 - An MCP server connection (`.mcp.json`) to the Empirical memory service. On first use you'll
   be prompted to sign in via OAuth. The same server also connects from ChatGPT Apps, so memory
   recorded from one client is visible from every other.
@@ -43,10 +43,15 @@ or use the `/plugin install` slash command.
 
 ## Optional: the `empirical` CLI
 
-The skill prefers the `empirical` CLI over MCP tools when both are available, since it avoids
+The Skills prefer the `empirical` CLI over MCP tools when both are available, since it avoids
 an extra tool-discovery round trip. The CLI is not bundled with this plugin — install it
 separately from [empirical.gauzza.com](https://empirical.gauzza.com) if you want that path;
 otherwise the bundled MCP tools work standalone.
+
+`empirical-work-history` is the optional work-history capability. When enabled during
+`empirical --install`, it records concise timestamped summaries of completed work, including
+what changed, why, verification, and any next action. It does not record raw transcripts or
+secrets.
 
 ## License
 

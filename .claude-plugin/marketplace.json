@@ -1,0 +1,19 @@
+{
+  "name": "empirical-memory",
+  "owner": {
+    "name": "Matt Gauzza",
+    "email": "mgauzza@gmail.com"
+  },
+  "metadata": {
+    "description": "Cross-tool, cross-project memory for Claude Code, Codex CLI, and GitHub Copilot CLI, powered by Empirical.",
+    "version": "1.0.1"
+  },
+  "plugins": [
+    {
+      "name": "empirical-memory",
+      "description": "Durable Empirical memory and timestamped work history across coding agents.",
+      "version": "1.0.1",
+      "source": "."
+    }
+  ]
+}
