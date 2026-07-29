@@ -1,6 +1,6 @@
 {
   "name": "empirical-memory",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Cross-tool, cross-project memory for Codex CLI. Start an idea in ChatGPT, pick it up in Codex with full context carried over. Track leads and relationships as durable memory instead of a separate CRM. Organize memory into separate workspaces for personal, team, or client contexts. Recalls prior decisions and conventions across sessions, and persists new ones as you work.",
   "author": {
     "name": "Matt Gauzza",
@@ -11,5 +11,18 @@
   "license": "MIT",
   "keywords": ["memory", "context", "mcp", "productivity", "personal-assistant", "crm", "leads", "workspaces"],
   "skills": "./skills/",
-  "mcpServers": "./.mcp.json"
+  "mcpServers": "./.mcp.json",
+  "interface": {
+    "displayName": "Empirical Memory",
+    "shortDescription": "Portable memory across AI tools and projects.",
+    "longDescription": "Carry durable context, decisions, preferences, and work history across Claude Code, Codex CLI, GitHub Copilot CLI, and ChatGPT.",
+    "developerName": "Empirical",
+    "category": "Productivity",
+    "capabilities": ["Read", "Write"],
+    "websiteURL": "https://empirical.gauzza.com",
+    "defaultPrompt": [
+      "Recall relevant context for this project.",
+      "Save this decision to Empirical memory."
+    ]
+  }
 }

@@ -10,11 +10,19 @@ Use Empirical to carry durable context across projects and clients.
 ## Before doing work
 
 1. Query relevant memories before any substantive response or tool call when the task may benefit from prior context. This includes research, debugging, PRDs/specs, status, handoffs, personal health, leads, CRM, and assistant operations.
-2. Prefer the `empirical` CLI when it is available because it avoids MCP tool discovery:
+2. Before using the CLI, load its authoritative command reference:
 
    ```text
-   empirical memory query --match "<relevant context>" --top-k 10
+   empirical doc memory
    ```
+
+   Follow the documented flags exactly; never guess a positional query form. Prefer the `empirical` CLI when it is available because it avoids MCP tool discovery:
+
+   ```text
+   empirical memory query --match "<specific relevant context>" --top-k 3
+   ```
+
+   Add `--category` or `--tags` when known. Omit `--pretty` for routine recall because graph-rich results can be large. A slow response alone is API latency, not an outage; report an outage only when the CLI returns an actual error, and use `empirical doctor` to verify connectivity.
 
 3. If the CLI is unavailable, use the connected MCP `query_memories` tool. Use filters such as `category`, `tags`, `nodeType`, and `monthKey` when they improve recall. For exhaustive topic retrieval, use the topic as a tag and follow pagination.
 
@@ -44,4 +52,4 @@ Use these when connected: `query_memories`, `record_graph_memory`, `add_note_by_
 
 ## Exact CLI syntax
 
-Run `empirical doc memory` before guessing CLI flags. Run `empirical doctor` to check connectivity and token status. If a CLI memory command reports a token error, run `empirical oauth bootstrap headless --write-env`.
+Run `empirical doctor` to check connectivity and token status. If a CLI memory command reports a token error, run `empirical oauth bootstrap headless --write-env`.
