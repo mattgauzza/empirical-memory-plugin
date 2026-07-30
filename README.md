@@ -22,13 +22,15 @@ don't have to re-explain context you've already given elsewhere.
 **Claude Code**
 
 ```
-/plugin install mattgauzza/empirical-memory-plugin
+claude plugin marketplace add mattgauzza/empirical-memory-plugin
+claude plugin install empirical-memory --scope user
 ```
 
 **Codex CLI**
 
 ```
 codex marketplace add mattgauzza/empirical-memory-plugin
+codex plugin add empirical-memory@empirical-memory
 ```
 
 or browse/install via the `/plugins` command.
@@ -36,20 +38,38 @@ or browse/install via the `/plugins` command.
 **GitHub Copilot CLI**
 
 ```
-copilot plugin install mattgauzza/empirical-memory-plugin
+copilot plugin marketplace add mattgauzza/empirical-memory-plugin
+copilot plugin marketplace upgrade empirical-memory
+copilot plugin install empirical-memory@empirical-memory
 ```
 
 or use the `/plugin install` slash command.
 
-## Optional: the `empirical` CLI
+## Recommended: install the latest `empirical` CLI
 
-The Skills prefer the `empirical` CLI over MCP tools when both are available, since it avoids
-an extra tool-discovery round trip. The CLI is not bundled with this plugin — install it
-separately from [empirical.gauzza.com](https://empirical.gauzza.com) if you want that path;
-otherwise the bundled MCP tools work standalone.
+The MCP tools work standalone, but the Skills prefer the `empirical` CLI when it is available.
+The CLI provides the most reliable auth path, direct memory commands, and avoids an extra MCP
+tool-discovery round trip. It is not bundled with this plugin; install or update the latest
+version separately:
+
+```bash
+npm install -g https://empirical.gauzza.com/downloads/cli/empirical-cli-latest.tgz
+```
+
+Then run the interactive installer to connect the CLI and supported coding agents:
+
+```bash
+empirical install
+```
+
+For normal interactive CLI use without a permanent API key, run `empirical auth login` to sign in
+through the browser and save a local OAuth session. Headless bootstrap is still available for
+automation and external runtimes.
+
+If you only want the plugin's MCP connection, you can skip the CLI installation.
 
 `empirical-work-history` is the optional work-history capability. When enabled during
-`empirical --install`, it records concise timestamped summaries of completed work, including
+`empirical install`, it records concise timestamped summaries of completed work, including
 what changed, why, verification, and any next action. It does not record raw transcripts or
 secrets.
 
