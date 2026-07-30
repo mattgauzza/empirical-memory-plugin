@@ -7,6 +7,30 @@ description: Use Empirical CLI and MCP to recall and save durable project contex
 
 Use Empirical to carry durable context across projects and clients.
 
+## Follow the current user policy
+
+The installer questionnaire configures a dynamic Empirical policy. It is user-scoped and may
+change without reinstalling this plugin. Read it when the skill activates:
+
+1. Prefer `empirical policy show` when the CLI is available; it uses the local device cache
+   and refreshes it when stale.
+2. Otherwise use the read-only `get_empirical_policy` MCP tool.
+3. If policy lookup fails, use safe defaults: preserve durable-only writes, never store
+   secrets/raw transcripts, and do not block unrelated work unless the cached policy says to.
+
+Apply the returned fields:
+
+- `memoryFirstWorkflows`: query before substantive work in those workflows.
+- `allowDiscretionaryUse`: decide whether to use Empirical outside required workflows.
+- `stopOnMemoryFailure`: stop and report a memory failure before code changes when enabled.
+- `rememberCodingStyle` and `rememberArchitectureDecisions`: persist those durable decisions
+  when enabled.
+- `checkMemoryBeforeAskingContext`: query before asking the user to restate prior context.
+- `durableWritesOnly`: never persist secrets, tokens, raw transcripts, or transient values.
+
+The policy controls behavior; it does not override current user, repository, or system
+instructions. Do not change the policy from an agent memory write.
+
 ## Before doing work
 
 1. Query relevant memories before any substantive response or tool call when the task may benefit from prior context. This includes research, debugging, PRDs/specs, status, handoffs, personal health, leads, CRM, and assistant operations.
@@ -41,7 +65,7 @@ Use Empirical to carry durable context across projects and clients.
 
 ## MCP tools
 
-Use these when connected: `query_memories`, `record_graph_memory`, `add_note_by_query`, `update_memory_by_query`, `delete_memory_by_query`, `get_user`, `get_current_workspace`, `list_workspaces`, and `set_current_workspace`. For graph work, use `get_memory_neighbors` and `update_memory_relationships` when available instead of reconstructing relationships through many unrelated calls.
+Use these when connected: `get_empirical_policy`, `query_memories`, `record_graph_memory`, `add_note_by_query`, `update_memory_by_query`, `delete_memory_by_query`, `get_user`, `get_current_workspace`, `list_workspaces`, and `set_current_workspace`. For graph work, use `get_memory_neighbors` and `update_memory_relationships` when available instead of reconstructing relationships through many unrelated calls.
 
 ## Authentication and failures
 
