@@ -70,6 +70,14 @@ automation and external runtimes.
 
 If you only want the plugin's MCP connection, you can skip the CLI installation.
 
+If the CLI is already installed and you only need to install or refresh the native plugin, use:
+
+```bash
+empirical plugin install codex       # or copilot, claude, or all
+```
+
+This does not run the full MCP/auth questionnaire or modify global instruction files.
+
 `empirical-work-history` and `empirical-scar-tissue` are optional capabilities guided by the
 `empirical install` questionnaire. Work history records concise completed-work summaries;
 scar tissue records recurring failure patterns and prevention guidance. Neither records raw
