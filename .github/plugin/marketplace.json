@@ -6,13 +6,13 @@
   },
   "metadata": {
     "description": "Cross-tool, cross-project memory for GitHub Copilot CLI, powered by Empirical.",
-    "version": "1.0.1"
+    "version": "1.0.2"
   },
   "plugins": [
     {
       "name": "empirical-memory",
       "description": "Cross-tool, cross-project memory for GitHub Copilot CLI. Recalls prior decisions and conventions across sessions and projects, and persists new ones as you work.",
-      "version": "1.0.1",
+      "version": "1.0.2",
       "source": "."
     }
   ]

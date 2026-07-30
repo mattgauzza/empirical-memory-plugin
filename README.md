@@ -13,6 +13,8 @@ don't have to re-explain context you've already given elsewhere.
 
 - Skills (`skills/empirical-memory/` and `skills/empirical-work-history/`) that tell your agent
   when to query, persist, and summarize durable work history during a session.
+- An optional `empirical-scar-tissue` Skill for recording recurring failure patterns, sharp edges,
+  and prevention guidance discovered during work.
 - An MCP server connection (`.mcp.json`) to the Empirical memory service. On first use you'll
   be prompted to sign in via OAuth. The same server also connects from ChatGPT Apps, so memory
   recorded from one client is visible from every other.
@@ -39,7 +41,7 @@ or browse/install via the `/plugins` command.
 
 ```
 copilot plugin marketplace add mattgauzza/empirical-memory-plugin
-copilot plugin marketplace upgrade empirical-memory
+copilot plugin marketplace upgrade
 copilot plugin install empirical-memory@empirical-memory
 ```
 
@@ -68,10 +70,10 @@ automation and external runtimes.
 
 If you only want the plugin's MCP connection, you can skip the CLI installation.
 
-`empirical-work-history` is the optional work-history capability. When enabled during
-`empirical install`, it records concise timestamped summaries of completed work, including
-what changed, why, verification, and any next action. It does not record raw transcripts or
-secrets.
+`empirical-work-history` and `empirical-scar-tissue` are optional capabilities guided by the
+`empirical install` questionnaire. Work history records concise completed-work summaries;
+scar tissue records recurring failure patterns and prevention guidance. Neither records raw
+transcripts or secrets.
 
 ## License
 
