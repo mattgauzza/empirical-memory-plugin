@@ -19,6 +19,13 @@ don't have to re-explain context you've already given elsewhere.
 Each capability is a separate marketplace plugin, so users can install or remove optional
 capabilities without changing the core memory connection.
 
+Package documentation:
+
+- [Core Empirical Memory](./README.md)
+- [Work History](./plugins/empirical-work-history/README.md)
+- [Scar Tissue](./plugins/empirical-scar-tissue/README.md)
+- [Todo](./plugins/empirical-todo/README.md)
+
 ## Install
 
 **Claude Code**
@@ -41,7 +48,7 @@ or browse/install via the `/plugins` command.
 
 ```
 copilot plugin marketplace add mattgauzza/empirical-memory-plugin
-copilot plugin marketplace upgrade
+copilot plugin marketplace update empirical-memory
 copilot plugin install empirical-memory@empirical-memory
 ```
 
