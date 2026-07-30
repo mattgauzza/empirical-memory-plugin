@@ -1,0 +1,10 @@
+{
+  "name": "empirical-scar-tissue",
+  "version": "1.0.0",
+  "description": "Recurring failure patterns and prevention guidance.",
+  "author": { "name": "Matt Gauzza", "email": "mgauzza@gmail.com" },
+  "repository": "https://github.com/mattgauzza/empirical-memory-plugin",
+  "license": "MIT",
+  "skills": "./skills/",
+  "interface": { "displayName": "Empirical Scar Tissue", "shortDescription": "Failure patterns and prevention guidance.", "longDescription": "Record recurring failure patterns, sharp edges, and prevention guidance.", "developerName": "Empirical", "category": "Productivity", "capabilities": ["Read", "Write"], "defaultPrompt": ["Record a verified prevention lesson from this failure."] }
+}

@@ -9,15 +9,15 @@ separate workspaces for personal, team, or client contexts. Recalls prior decisi
 and conventions across sessions and projects, and persists new durable ones as you work — so you
 don't have to re-explain context you've already given elsewhere.
 
-## What this plugin installs
+## What this marketplace provides
 
-- Skills (`skills/empirical-memory/` and `skills/empirical-work-history/`) that tell your agent
-  when to query, persist, and summarize durable work history during a session.
-- An optional `empirical-scar-tissue` Skill for recording recurring failure patterns, sharp edges,
-  and prevention guidance discovered during work.
-- An MCP server connection (`.mcp.json`) to the Empirical memory service. On first use you'll
-  be prompted to sign in via OAuth. The same server also connects from ChatGPT Apps, so memory
-  recorded from one client is visible from every other.
+- `empirical-memory`: the required core memory Skill and MCP server connection.
+- `empirical-work-history`: optional concise completed-work summaries.
+- `empirical-scar-tissue`: optional recurring failure patterns and prevention guidance.
+- `empirical-todo`: optional project-based todos with status and next actions.
+
+Each capability is a separate marketplace plugin, so users can install or remove optional
+capabilities without changing the core memory connection.
 
 ## Install
 
@@ -81,14 +81,15 @@ If the CLI is already installed and you only need to install or refresh the nati
 empirical plugin install codex       # or copilot, claude, or all
 ```
 
+Add optional capabilities explicitly with `--work-history`, `--scar-tissue`, `--todo`, or
+`--all-optional`.
+
 This does not run the full MCP/auth questionnaire or modify global instruction files.
 
-`empirical-work-history` and `empirical-scar-tissue` are optional capabilities guided by the
-`empirical install` questionnaire. Work history records concise completed-work summaries;
-scar tissue records recurring failure patterns and prevention guidance. Neither records raw
-transcripts or secrets. Personalized answers are stored as the server-side Empirical policy and
-cached locally for native skills; they are not written into global `AGENTS.md`, `CLAUDE.md`, or
-Copilot instruction files.
+Optional capabilities selected by the `empirical install` questionnaire are installed through the
+same marketplace pathway. Neither records raw transcripts or secrets. Personalized answers are
+stored as the server-side Empirical policy and cached locally for native skills; they are not
+written into global `AGENTS.md`, `CLAUDE.md`, or Copilot instruction files.
 
 ## License
 

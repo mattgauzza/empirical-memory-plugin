@@ -1,0 +1,10 @@
+{
+  "name": "empirical-work-history",
+  "version": "1.0.0",
+  "description": "Concise completed-work summaries for future agents.",
+  "author": { "name": "Matt Gauzza", "email": "mgauzza@gmail.com" },
+  "repository": "https://github.com/mattgauzza/empirical-memory-plugin",
+  "license": "MIT",
+  "skills": "./skills/",
+  "interface": { "displayName": "Empirical Work History", "shortDescription": "Completed-work summaries for future agents.", "longDescription": "Record concise, timestamped summaries of meaningful completed work.", "developerName": "Empirical", "category": "Productivity", "capabilities": ["Read", "Write"], "defaultPrompt": ["Record a concise summary of this completed work."] }
+}
