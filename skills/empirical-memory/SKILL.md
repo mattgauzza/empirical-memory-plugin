@@ -1,11 +1,15 @@
 ---
 name: empirical-memory
-description: Use Empirical CLI and MCP to recall and save durable project context across sessions and projects.
+description: Use Empirical to recall/save durable project context across sessions, and to look up how to use Empirical itself - CLI commands, install/auth/workspace/kit/skill setup, docs.
 ---
 
 # Empirical Memory
 
-Use Empirical to carry durable context across projects and clients.
+Use Empirical to carry durable context across projects and clients, and as the first stop for
+"how do I use Empirical" questions — CLI command syntax, install/auth/workspace/kit/skill setup,
+or what Empirical can do. Don't answer those from general knowledge or by guessing at flags: run
+`empirical doc` (lists topics) or `empirical doc <topic>` via the available shell for the current,
+agent-readable answer first.
 
 ## Follow the current user policy
 
