@@ -6,13 +6,13 @@
   },
   "metadata": {
     "description": "Cross-tool, cross-project memory for Claude Code, Codex CLI, and GitHub Copilot CLI, powered by Empirical.",
-    "version": "1.1.1"
+    "version": "1.1.2"
   },
   "plugins": [
     {
       "name": "empirical-memory",
       "description": "Core Empirical memory and MCP connection across coding agents.",
-      "version": "1.1.1",
+      "version": "1.1.2",
       "source": "."
     },
     {
