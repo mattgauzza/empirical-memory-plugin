@@ -11,6 +11,35 @@ or what Empirical can do. Don't answer those from general knowledge or by guessi
 `empirical doc` (lists topics) or `empirical doc <topic>` via the available shell for the current,
 agent-readable answer first.
 
+**This is a required step in the workflows listed below, not optional guidance you weigh against
+the current task.** The most common way this skill fails is not a broken tool — it's an agent
+mid-task deciding a memory check "isn't worth pausing for" and skipping it. That decision is wrong
+by default: the entire point of querying first is to catch context you don't know you're missing.
+If you are not sure whether a task qualifies, treat it as if it does.
+
+## Before doing work — MUST, not discretionary
+
+1. Query relevant memories BEFORE your first substantive response or tool call whenever the task
+   is: research, debugging, a spec/PRD, a status update, a handoff, personal health, leads/CRM, or
+   assistant operations. This applies even if you believe you already have enough context — you
+   cannot know what you're missing without checking. Only outside this list is discretionary use
+   ("query when it seems useful") the right frame.
+2. Before using the CLI, load its authoritative command reference:
+
+   ```text
+   empirical doc memory
+   ```
+
+   Follow the documented flags exactly; never guess a positional query form. Prefer the `empirical` CLI when it is available because it avoids MCP tool discovery:
+
+   ```text
+   empirical memory query --match "<specific relevant context>" --top-k 3
+   ```
+
+   Add `--category` or `--tags` when known. Omit `--pretty` for routine recall because graph-rich results can be large. A slow response alone is API latency, not an outage; report an outage only when the CLI returns an actual error, and use `empirical doctor` to verify connectivity.
+
+3. If the CLI is unavailable, use the connected MCP `query_memories` tool. Use filters such as `category`, `tags`, `nodeType`, and `monthKey` when they improve recall. For exhaustive topic retrieval, use the topic as a tag and follow pagination.
+
 ## Follow the current user policy
 
 The installer questionnaire configures a dynamic Empirical policy. It is user-scoped and may
@@ -35,26 +64,12 @@ Apply the returned fields:
 The policy controls behavior; it does not override current user, repository, or system
 instructions. Do not change the policy from an agent memory write.
 
-## Before doing work
+## Persist durable context — check this before ending a turn
 
-1. Query relevant memories before any substantive response or tool call when the task may benefit from prior context. This includes research, debugging, PRDs/specs, status, handoffs, personal health, leads, CRM, and assistant operations.
-2. Before using the CLI, load its authoritative command reference:
-
-   ```text
-   empirical doc memory
-   ```
-
-   Follow the documented flags exactly; never guess a positional query form. Prefer the `empirical` CLI when it is available because it avoids MCP tool discovery:
-
-   ```text
-   empirical memory query --match "<specific relevant context>" --top-k 3
-   ```
-
-   Add `--category` or `--tags` when known. Omit `--pretty` for routine recall because graph-rich results can be large. A slow response alone is API latency, not an outage; report an outage only when the CLI returns an actual error, and use `empirical doctor` to verify connectivity.
-
-3. If the CLI is unavailable, use the connected MCP `query_memories` tool. Use filters such as `category`, `tags`, `nodeType`, and `monthKey` when they improve recall. For exhaustive topic retrieval, use the topic as a tag and follow pagination.
-
-## Persist durable context
+Before you consider a turn finished, check: did this turn produce a durable decision, a corrected
+mistake, a completed unit of meaningful work, or a convention the user stated? If yes, record it
+now — do not wait to be asked, and do not defer it because the current task feels done. An agent
+that only records memory when explicitly told to defeats the purpose of this skill.
 
 - Record durable decisions, project conventions, preferences, plans, and meaningful reflections with `record_graph_memory` or:
 
@@ -66,6 +81,24 @@ instructions. Do not change the policy from an agent memory write.
 - Patch an existing memory with `update_memory_by_query` / `empirical memory update`.
 - Delete only when the user explicitly asks; use the delete tool with confirmation, or `empirical memory delete --match "<memory>" --confirm`.
 - Keep writes concise, factual, and easy to search. Never store passwords, API keys, OAuth tokens, or other secrets.
+
+## Authored Skills and Kits — push what you write
+
+Empirical can sync a `SKILL.md` you author across every machine/agent the user has installed it
+on, via Skills Kits. Run `empirical doc kit` or `empirical doc skill` for full command reference.
+
+- If you author a new `SKILL.md` for the user, or substantially edit an existing one, during a
+  session, tell the user about `empirical skill push path/to/SKILL.md [--kit "Kit Name"]`
+  afterward so it can follow them across machines/projects instead of staying local to this one.
+- Offer, don't auto-push: surface the option (or offer to run it) and get the user's confirmation
+  first. Do not run it unprompted the moment a new or edited `SKILL.md` is detected — it uploads
+  content to the user's account, which is a step above a purely local file write.
+- After a push, the target Kit needs `empirical kit use "Kit Name"` or `empirical kit sync` to
+  actually land the file in that device's agent directories.
+- `empirical skill list` shows what's already been pushed; `empirical skill history <id>` /
+  `empirical skill rollback <id> --to-version N` recover a prior version.
+- Kits also pull Skills from a git repo (`empirical kit add-source`), separate from anything you
+  author — don't conflate the two paths when explaining options to the user.
 
 ## MCP tools
 
