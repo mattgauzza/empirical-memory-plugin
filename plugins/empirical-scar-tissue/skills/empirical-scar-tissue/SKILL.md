@@ -37,8 +37,17 @@ possible position in most ranking schemes.
 When recording scar tissue that came from coding work, collect the context below **before**
 writing the memory. This is a required capture step, not optional polish:
 
-1. If the host exposes a transcript/session file, record its runtime (`codex`, `claude`, or
-   `copilot`) and exact path.
+1. Identify the runtime and its exact session identifier. Record `runtime` and `sessionId` whenever
+   either is discoverable; a runtime name alone is not sufficient session trace metadata.
+   - **Codex:** when the current resume UUID is available, find the exact file whose name contains
+     it under `~/.codex/sessions/` and record both `sessionId` and `transcriptPath`. Never select
+     the newest session file as a substitute for an ID match.
+   - **Claude Code:** use the hook input's `session_id` and `transcript_path`. In a non-hook
+     subprocess, `CLAUDE_CODE_SESSION_ID` supplies the ID; record `transcriptPath` only when an
+     exact path is also supplied or verified.
+   - **Copilot CLI:** use the hook input's `sessionId` (or `session_id`). Copilot does not
+     guarantee a per-session transcript path. Record `sessionStatePath` only when the exact
+     `~/.copilot/session-state/<sessionId>/` directory exists (respect `COPILOT_HOME` when set).
 2. If the current directory is inside Git, record the repository root, worktree path, current
    branch, and current `HEAD`.
 3. Include every commit made during this coding session that materially relates to the lesson,
@@ -46,15 +55,19 @@ writing the memory. This is a required capture step, not optional polish:
 4. Put every value you successfully discover in `data.session` / `data.git`. Omit only a value
    that the host or Git cannot provide.
 
-Never invent, infer, or guess a transcript path, runtime, branch, commit hash, or original
-session starting commit. A non-Git task or a host that does not expose its transcript proceeds
-normally with only the metadata that is actually available.
+Never invent, infer, or guess a session ID, transcript path, session-state path, runtime, branch,
+commit hash, or original session starting commit. A non-Git task or a host without a discoverable
+session proceeds normally with only the metadata that is actually available.
 
 Use this shape when values are available:
 
 ```json
 {
-  "session": { "runtime": "codex", "transcriptPath": "C:\\path\\to\\session.jsonl" },
+  "session": {
+    "runtime": "codex",
+    "sessionId": "<verified session UUID>",
+    "transcriptPath": "C:\\path\\to\\session.jsonl"
+  },
   "git": {
     "repoPath": "M:\\Projects\\repo",
     "worktreePath": "M:\\Projects\\repo",
@@ -74,7 +87,11 @@ record_graph_memory({
   tags: ["<project>", "scar-tissue"],
   mass: 1,
   data: {
-    session: { runtime: "<runtime>", transcriptPath: "<known transcript path>" },
+    session: {
+      runtime: "<codex|claude|copilot>", sessionId: "<verified session ID>",
+      transcriptPath: "<known transcript path, only when verified>",
+      sessionStatePath: "<Copilot state directory, only when verified>"
+    },
     git: {
       repoPath: "<git root>", worktreePath: "<worktree path>", branch: "<branch>",
       startCommit: "<current HEAD>", relatedCommits: [{ hash: "<hash>", subject: "<subject>" }]
