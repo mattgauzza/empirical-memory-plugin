@@ -18,11 +18,36 @@ Create one concise, queryable memory with:
 - `verification`: tests, checks, or manual validation performed
 - `next action`: only when follow-up remains
 
-Prefer a single durable summary over a transcript or a memory for every intermediate step. Use
-the Empirical MCP memory tools when available, or the CLI fallback:
+Prefer a single durable summary over a transcript or a memory for every intermediate step.
+
+### These are notes about YOUR work, not facts about the user
+
+A work-history entry records what an agent did. It is not something the user said, chose, or
+lived through, and downstream features must be able to tell the difference — a proactive
+message built on "I refactored the cluster selector" is the assistant talking to the user
+about itself.
+
+**Every write MUST carry the `work-history` tag and `mass: 1`.** Both, on both paths. The tag is
+what lets a reader separate process notes from real memories; `mass: 1` keeps them from
+outranking the user's own material, since an inferred mass is typically 2-4x higher and these
+are simultaneously the newest and least-revisited things in a corpus, which is the best
+possible position in most ranking schemes.
+
+Using the Empirical MCP memory tools (preferred):
 
 ```text
-empirical memory record --category build --summary "<timestamped completed-work summary>" --tags <project>,work-history
+record_graph_memory({
+  category: "build",
+  summary: "<timestamped completed-work summary>",
+  tags: ["<project>", "work-history"],
+  mass: 1
+})
+```
+
+CLI fallback:
+
+```text
+empirical memory record --category build --summary "<timestamped completed-work summary>" --tags <project>,work-history --mass 1
 ```
 
 Use `update_memory_by_query` or `empirical memory update` when the summary already exists and
