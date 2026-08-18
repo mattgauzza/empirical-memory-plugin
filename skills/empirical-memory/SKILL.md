@@ -77,6 +77,16 @@ that only records memory when explicitly told to defeats the purpose of this ski
   empirical memory record --category <category> --summary "<concise fact>" --tags <tag1,tag2>
   ```
 
+  **Record facts about the USER, not about your own work.** You are a scribe here. "Matt prefers
+  short status updates" is a memory; "refactored the cluster selector, tests pass" is your diary
+  and belongs in the work-history skill, tagged and with `mass: 1`. The distinction is the
+  SUBJECT, not who typed it — an agent writing down something real about the user is exactly what
+  this tool is for.
+
+  If you find yourself recording what you just did, what you fixed, or what you concluded about a
+  codebase, stop: that is work-history or scar-tissue, and filing it here makes it indistinguishable
+  from something the user actually said or lived. Downstream features read these as the user's life.
+
 - Append a correction or follow-up to an existing memory with `add_note_by_query` / `empirical memory note`.
 - Patch an existing memory with `update_memory_by_query` / `empirical memory update`.
 - Delete only when the user explicitly asks; use the delete tool with confirmation, or `empirical memory delete --match "<memory>" --confirm`.
