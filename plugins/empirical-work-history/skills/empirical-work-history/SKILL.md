@@ -33,6 +33,39 @@ outranking the user's own material, since an inferred mass is typically 2-4x hig
 are simultaneously the newest and least-revisited things in a corpus, which is the best
 possible position in most ranking schemes.
 
+## Coding-session trace metadata — capture before every coding write
+
+When recording completed coding work, collect the context below **before** writing the memory.
+This is a required capture step, not optional polish:
+
+1. If the host exposes a transcript/session file, record its runtime (`codex`, `claude`, or
+   `copilot`) and exact path.
+2. If the current directory is inside Git, record the repository root, worktree path, current
+   branch, and current `HEAD`.
+3. Include every commit made during this coding session that materially relates to the completed
+   work, with its hash and subject.
+4. Put every value you successfully discover in `data.session` / `data.git`. Omit only a value
+   that the host or Git cannot provide.
+
+Never invent, infer, or guess a transcript path, runtime, branch, commit hash, or original
+session starting commit. A non-Git task or a host that does not expose its transcript proceeds
+normally with only the metadata that is actually available.
+
+Use this shape when values are available:
+
+```json
+{
+  "session": { "runtime": "codex", "transcriptPath": "C:\\path\\to\\session.jsonl" },
+  "git": {
+    "repoPath": "M:\\Projects\\repo",
+    "worktreePath": "M:\\Projects\\repo",
+    "branch": "main",
+    "startCommit": "abc1234",
+    "relatedCommits": [{ "hash": "def5678", "subject": "feat: complete work" }]
+  }
+}
+```
+
 Using the Empirical MCP memory tools (preferred):
 
 ```text
@@ -40,15 +73,26 @@ record_graph_memory({
   category: "build",
   summary: "<timestamped completed-work summary>",
   tags: ["<project>", "work-history"],
-  mass: 1
+  mass: 1,
+  data: {
+    session: { runtime: "<runtime>", transcriptPath: "<known transcript path>" },
+    git: {
+      repoPath: "<git root>", worktreePath: "<worktree path>", branch: "<branch>",
+      startCommit: "<current HEAD>", relatedCommits: [{ hash: "<hash>", subject: "<subject>" }]
+    }
+  }
 })
 ```
 
 CLI fallback:
 
 ```text
-empirical memory record --category build --summary "<timestamped completed-work summary>" --tags <project>,work-history --mass 1
+empirical memory record --json-file <path-to-payload.json>
 ```
+
+The CLI JSON payload carries the same `data.session` and `data.git` object shown above, plus
+`category`, `summary`, `tags`, and `mass: 1`. Do not drop trace metadata just because the CLI
+form is less convenient.
 
 Use `update_memory_by_query` or `empirical memory update` when the summary already exists and
 needs correction. Never store credentials, tokens, private keys, raw prompts, or unrelated
