@@ -1,0 +1,6 @@
+# The manifest generator writes LF. Without this, a Windows checkout converts the
+# generated JSON to CRLF and `build-manifests.mjs --check` reports false drift
+# locally while passing in CI.
+*.json text eol=lf
+*.mjs  text eol=lf
+*.yml  text eol=lf
