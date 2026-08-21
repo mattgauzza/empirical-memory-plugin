@@ -98,6 +98,38 @@ same marketplace pathway. Neither records raw transcripts or secrets. Personaliz
 stored as the server-side Empirical policy and cached locally for native skills; they are not
 written into global `AGENTS.md`, `CLAUDE.md`, or Copilot instruction files.
 
+## Maintaining the manifests
+
+This repo publishes to four hosts, each with its own manifest format. All of them are
+**generated** from a single source of truth, `meta/manifests.json`:
+
+| Generated file | Host |
+| --- | --- |
+| `.claude-plugin/plugin.json`, `.claude-plugin/marketplace.json` | Claude Code |
+| `.codex-plugin/plugin.json` | Codex CLI |
+| `.github/plugin/marketplace.json` | GitHub Copilot CLI |
+| `.agents/plugins/marketplace.json` | generic AGENTS.md |
+
+plus a `.claude-plugin/` and `.codex-plugin/` pair under each directory in `plugins/`.
+
+Do not hand-edit those files. Edit `meta/manifests.json`, then regenerate:
+
+```bash
+node scripts/build-manifests.mjs           # write the manifests
+node scripts/build-manifests.mjs --check    # verify nothing drifted (CI runs this)
+claude plugin validate . --strict           # same validator the plugin directory runs
+```
+
+To bump a version, change it in one place: the plugin's `version` in
+`meta/manifests.json`. The marketplace `metadata.version` follows the root plugin
+automatically.
+
+Host-specific fields belong to their host. `interface` is a Codex/Copilot block;
+Claude Code silently ignores unknown top-level fields, so putting `interface` in a
+`.claude-plugin/` file does nothing. Claude's equivalents are `displayName`,
+`description`, and `homepage`, and it has no counterpart for `longDescription`,
+`category`, `capabilities`, or `defaultPrompt`. The generator encodes this mapping.
+
 ## License
 
 MIT

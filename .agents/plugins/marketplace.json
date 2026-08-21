@@ -1,29 +1,55 @@
 {
   "name": "empirical-memory",
-  "interface": { "displayName": "Empirical Memory" },
+  "interface": {
+    "displayName": "Empirical Memory"
+  },
   "plugins": [
     {
       "name": "empirical-memory",
-      "source": { "source": "local", "path": "./" },
-      "policy": { "installation": "AVAILABLE", "authentication": "ON_INSTALL" },
+      "source": {
+        "source": "local",
+        "path": "./"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
       "category": "Productivity"
     },
     {
       "name": "empirical-work-history",
-      "source": { "source": "local", "path": "./plugins/empirical-work-history" },
-      "policy": { "installation": "AVAILABLE", "authentication": "ON_INSTALL" },
+      "source": {
+        "source": "local",
+        "path": "./plugins/empirical-work-history"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
       "category": "Productivity"
     },
     {
       "name": "empirical-scar-tissue",
-      "source": { "source": "local", "path": "./plugins/empirical-scar-tissue" },
-      "policy": { "installation": "AVAILABLE", "authentication": "ON_INSTALL" },
+      "source": {
+        "source": "local",
+        "path": "./plugins/empirical-scar-tissue"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
       "category": "Productivity"
     },
     {
       "name": "empirical-todo",
-      "source": { "source": "local", "path": "./plugins/empirical-todo" },
-      "policy": { "installation": "AVAILABLE", "authentication": "ON_INSTALL" },
+      "source": {
+        "source": "local",
+        "path": "./plugins/empirical-todo"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
       "category": "Productivity"
     }
   ]

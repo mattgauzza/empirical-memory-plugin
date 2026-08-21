@@ -6,31 +6,31 @@
   },
   "metadata": {
     "description": "Cross-tool, cross-project memory for Claude Code, Codex CLI, and GitHub Copilot CLI, powered by Empirical.",
-    "version": "1.1.2"
+    "version": "1.2.0"
   },
   "plugins": [
     {
       "name": "empirical-memory",
       "description": "Core Empirical memory and MCP connection across coding agents.",
-      "version": "1.1.2",
+      "version": "1.2.0",
       "source": "."
     },
     {
       "name": "empirical-work-history",
       "description": "Concise completed-work summaries for future agents.",
-      "version": "1.0.0",
+      "version": "1.1.0",
       "source": "./plugins/empirical-work-history"
     },
     {
       "name": "empirical-scar-tissue",
       "description": "Recurring failure patterns and prevention guidance.",
-      "version": "1.0.0",
+      "version": "1.1.0",
       "source": "./plugins/empirical-scar-tissue"
     },
     {
       "name": "empirical-todo",
       "description": "Project-based todos with status, next actions, and completion evidence.",
-      "version": "1.0.0",
+      "version": "1.1.0",
       "source": "./plugins/empirical-todo"
     }
   ]
