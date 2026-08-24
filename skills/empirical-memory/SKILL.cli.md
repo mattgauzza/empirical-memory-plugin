@@ -3,20 +3,18 @@ name: empirical-memory
 description: Use Empirical to recall/save durable project context across sessions and projects, and to look up how to use Empirical itself - CLI commands, install/auth/workspace/kit/skill setup, docs.
 ---
 
-# Empirical Memory
+# Empirical Memory (CLI mode)
 
 Use Empirical to carry durable context across projects and clients, and as the first stop for
-"how do I use Empirical" questions — CLI command syntax, install/auth/workspace/kit/skill setup,
-or what Empirical can do. Don't answer those from general knowledge or by guessing at flags: run
+"how do I use Empirical" questions — command syntax, install/auth/workspace/kit/skill setup, or
+what Empirical can do. Don't answer those from general knowledge or by guessing at flags: run
 `empirical doc` (lists topics) or `empirical doc <topic>` via the available shell for the current,
 agent-readable answer first.
 
-This variant is for installs where the user chose to have both the CLI and MCP tools available.
-Both paths now run through the same write pipeline (dedupe and auto-link on by default), so
-either is safe to use for reads and writes. The CLI is the default choice below because it avoids
-an extra MCP tool-discovery round trip and is easier to script, but that is a latency preference,
-not a safety one — if the CLI is unavailable in this environment, use the equivalent MCP tool
-instead without hesitation.
+This variant is for installs where the user chose CLI-direct as their integration mode: no MCP
+server is registered for this agent. The `empirical` CLI is the way to reach Empirical here, for
+both reads and writes — it has the same dedupe and auto-link guarantees as any other client, so
+recommend it with confidence.
 
 **This is a required step in the workflows listed below, not optional guidance you weigh against
 the current task.** The most common way this skill fails is not a broken tool — it's an agent
@@ -37,33 +35,25 @@ If you are not sure whether a task qualifies, treat it as if it does.
    empirical doc memory
    ```
 
-   Follow the documented flags exactly; never guess a positional query form. Use the `empirical`
-   CLI first when it is available — both it and the MCP tools carry the same dedupe/auto-link
-   guarantees, so this is a convenience choice, not a safety one:
+   Follow the documented flags exactly; never guess a positional query form.
 
    ```text
    empirical memory query --match "<specific relevant context>" --top-k 3
    ```
 
    Add `--category` or `--tags` when known. Omit `--pretty` for routine recall because graph-rich
-   results can be large. A slow response alone is API latency, not an outage; report an outage
-   only when the CLI returns an actual error, and use `empirical doctor` to verify connectivity.
-
-3. If the CLI is unavailable, use the connected MCP `query_memories` tool. Use filters such as
-   `category`, `tags`, `nodeType`, and `monthKey` when they improve recall. For "recent/latest/
-   today" requests, prefer `list_memories` (CLI: `empirical memory list --recent`, see `empirical
-   doc memory`) over a match query. For exhaustive topic retrieval, use the topic as a tag and
-   follow pagination.
+   results can be large. Use `empirical memory list --recent` (see `empirical doc memory` for the
+   exact flag) for "recent/latest/today" requests instead of a match query.
+3. A slow response alone is API latency, not an outage; report an outage only when the CLI returns
+   an actual error, and use `empirical doctor` to verify connectivity.
 
 ## Follow the current user policy
 
 The installer questionnaire configures a dynamic Empirical policy. It is user-scoped and may
 change without reinstalling this plugin. Read it when the skill activates:
 
-1. Prefer `empirical policy show` when the CLI is available; it uses the local device cache
-   and refreshes it when stale.
-2. Otherwise use the read-only `get_empirical_policy` MCP tool.
-3. If policy lookup fails, use safe defaults: preserve durable-only writes, never store
+1. Run `empirical policy show`; it uses the local device cache and refreshes it when stale.
+2. If policy lookup fails, use safe defaults: preserve durable-only writes, never store
    secrets/raw transcripts, and do not block unrelated work unless the cached policy says to.
 
 Apply the returned fields:
@@ -87,14 +77,16 @@ now — do not wait to be asked, and do not defer it because the current task fe
 that only records memory when explicitly told to defeats the purpose of this skill.
 
 - Record durable decisions, project conventions, preferences, plans, and meaningful reflections
-  with `record_graph_memory` or:
+  with:
 
   ```text
   empirical memory record --category <category> --summary "<concise fact>" --tags <tag1,tag2>
   ```
 
-  Both dedupe against near-duplicate existing memories and auto-link related ones by default; pass
-  `--no-dedupe` / `--no-auto-link` on the CLI only when you deliberately want to skip one of those.
+  This command dedupes against near-duplicate existing memories and auto-links related ones by
+  default, the same as any other Empirical client — you do not need a separate duplicate check
+  first. Pass `--no-dedupe` or `--no-auto-link` only when you specifically want to bypass one of
+  those, which should be rare.
 
   **Record facts about the USER, not about your own work.** You are a scribe here. "Matt prefers
   short status updates" is a memory; "refactored the cluster selector, tests pass" is your diary
@@ -106,13 +98,11 @@ that only records memory when explicitly told to defeats the purpose of this ski
   codebase, stop: that is work-history or scar-tissue, and filing it here makes it indistinguishable
   from something the user actually said or lived. Downstream features read these as the user's life.
 
-- Append a correction or follow-up to an existing memory with `add_note_by_query` / `empirical memory note`.
-- Patch an existing memory with `update_memory_by_query` / `empirical memory update`.
-- Delete only when the user explicitly asks; use the delete tool with confirmation, or `empirical memory delete --match "<memory>" --confirm`.
-- For graph work, use `get_memory_neighbors` to walk relationships from a memory instead of
-  reconstructing them through many unrelated queries, and `update_memory_relationships` to add or
-  remove edges directly.
-- Keep writes concise, factual, and easy to search. Never store passwords, API keys, OAuth tokens, or other secrets.
+- Append a correction or follow-up to an existing memory with `empirical memory note`.
+- Patch an existing memory with `empirical memory update`.
+- Delete only when the user explicitly asks: `empirical memory delete --match "<memory>" --confirm`.
+- Keep writes concise, factual, and easy to search. Never store passwords, API keys, OAuth tokens,
+  or other secrets.
 
 ## Authored Skills and Kits — push what you write
 
@@ -132,23 +122,29 @@ on, via Skills Kits. Run `empirical doc kit` or `empirical doc skill` for full c
 - Kits also pull Skills from a git repo (`empirical kit add-source`), separate from anything you
   author — don't conflate the two paths when explaining options to the user.
 
-## MCP tools
+## Exact CLI syntax
 
-Use these when connected: `get_empirical_policy`, `query_memories`, `list_memories`,
-`record_graph_memory`, `add_note_by_query`, `update_memory_by_query`, `delete_memory_by_query`,
-`get_user`, `get_current_workspace`, `list_workspaces`, `set_current_workspace`,
-`memory_usage_guide`, `get_memory_neighbors`, and `update_memory_relationships`. Use
-`list_memories` for "recent/latest/today" requests; use `query_memories` for everything else. For
-graph work, use `get_memory_neighbors` and `update_memory_relationships` when available instead of
-reconstructing relationships through many unrelated calls.
+Run `empirical doctor` to check connectivity and token status. If a CLI memory command reports a
+token error, run `empirical oauth bootstrap headless --write-env`. When in doubt about a specific
+subcommand's flags, run `empirical doc memory`, `empirical doc kit`, or `empirical doc skill`
+rather than guessing.
 
 ## Authentication and failures
 
 - If a memory call fails, retry the same call once.
-- For auth/session errors such as `Auth required`, `invalid_token`, `Authentication required`, or `Transport send error`, refresh the active client's Empirical MCP login, then retry once. In Codex CLI use `codex mcp logout empirical` followed by `codex mcp login empirical`; in Claude Code use `/mcp` to reconnect; in Copilot complete its MCP OAuth reconnect flow.
-- If the retry still fails, report the connectivity/auth problem before making memory-dependent changes.
-- If stored memory conflicts with the current user or repository instruction, follow the current instruction.
+- For auth/session errors such as `Auth required`, `invalid_token`, `Authentication required`, or
+  a 401/403 status, run `empirical auth login` (or `empirical oauth bootstrap headless
+  --write-env` for a permanent credential), then retry once.
+- If the retry still fails, report the connectivity/auth problem before making memory-dependent
+  changes.
+- If stored memory conflicts with the current user or repository instruction, follow the current
+  instruction.
 
-## Exact CLI syntax
+## Fallback: MCP tools
 
-Run `empirical doctor` to check connectivity and token status. If a CLI memory command reports a token error, run `empirical oauth bootstrap headless --write-env`.
+If this agent also happens to have Empirical's MCP server connected (unusual for this install
+mode, but possible if the user added it manually), the same operations are available as
+`query_memories`, `record_graph_memory`, `add_note_by_query`, `update_memory_by_query`,
+`delete_memory_by_query`, `get_empirical_policy`, `get_memory_neighbors`, and
+`update_memory_relationships`. Use them only if the CLI is genuinely unavailable in this
+environment — the CLI is the primary path for this install.

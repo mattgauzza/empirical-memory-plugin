@@ -98,6 +98,40 @@ same marketplace pathway. Neither records raw transcripts or secrets. Personaliz
 stored as the server-side Empirical policy and cached locally for native skills; they are not
 written into global `AGENTS.md`, `CLAUDE.md`, or Copilot instruction files.
 
+## Mode-aware skill content
+
+`skills/empirical-memory/` contains four files, not one:
+
+- `SKILL.mcp.md` — for installs where the user chose MCP-only. Leads with MCP tools, mentions the
+  CLI only as an aside.
+- `SKILL.cli.md` — for installs where the user chose CLI-direct. Leads with `empirical` CLI
+  commands as the confidently-recommended path, MCP mentioned only as a fallback.
+- `SKILL.both.md` — for installs where the user chose both. CLI preferred where available (a
+  latency/scripting preference, not a safety one now that both paths dedupe and auto-link the
+  same way), MCP as fallback.
+- `SKILL.md` — the file every host's native plugin mechanism actually reads (Claude Code, Codex
+  CLI, and GitHub Copilot CLI all resolve a plugin's skill from the literal `SKILL.md` filename;
+  none of their manifest schemas support selecting among sibling variant files at install time).
+  Kept identical to `SKILL.both.md`, since "both" is the safest default for any consumer that
+  hasn't been made mode-aware (an old CLI version, a direct git clone, a host with no CLI
+  installed at all).
+
+The `empirical` CLI is what actually makes the mode choice matter: after a native plugin install
+or update, it overwrites the on-disk `SKILL.md` for that host with the variant matching the user's
+chosen integration mode (see `packages/cli/lib/installers/nativePlugin.js` in the main
+`empirical_v2` repo). If that overwrite step is missing, out of date, or fails, every install still
+gets a working "both" skill from this repo — never a missing or broken one.
+
+When editing skill content: update `SKILL.mcp.md`, `SKILL.cli.md`, and `SKILL.both.md` for the
+mode-specific "how to query" / "how to record" mechanics; keep the shared policy sections (Before
+doing work, Follow the current user policy, Persist durable context, Authored Skills and Kits,
+Authentication and failures) consistent across all three by hand — there is no build step that
+enforces this. After editing `SKILL.both.md`, copy it over `SKILL.md` so the two never drift:
+
+```bash
+cp skills/empirical-memory/SKILL.both.md skills/empirical-memory/SKILL.md
+```
+
 ## Maintaining the manifests
 
 This repo publishes to four hosts, each with its own manifest format. All of them are
