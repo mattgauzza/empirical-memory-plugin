@@ -109,6 +109,10 @@ that only records memory when explicitly told to defeats the purpose of this ski
 - Append a correction or follow-up to an existing memory with `add_note_by_query` / `empirical memory note`.
 - Patch an existing memory with `update_memory_by_query` / `empirical memory update`.
 - Delete only when the user explicitly asks; use the delete tool with confirmation, or `empirical memory delete --match "<memory>" --confirm`.
+- If the target memory was created earlier in this same session, pass its id (`memoryId` for the
+  MCP tools, `--memory-id` for the CLI) instead of re-resolving it by natural-language match/query.
+  Search indexing can lag a few seconds behind a fresh write, so a fuzzy match can briefly return
+  not-found for a memory that was just created, even though it exists.
 - For graph work, use `get_memory_neighbors` to walk relationships from a memory instead of
   reconstructing them through many unrelated queries, and `update_memory_relationships` to add or
   remove edges directly.

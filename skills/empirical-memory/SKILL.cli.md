@@ -101,6 +101,9 @@ that only records memory when explicitly told to defeats the purpose of this ski
 - Append a correction or follow-up to an existing memory with `empirical memory note`.
 - Patch an existing memory with `empirical memory update`.
 - Delete only when the user explicitly asks: `empirical memory delete --match "<memory>" --confirm`.
+- If the target memory was created earlier in this same session, pass `--memory-id` instead of
+  `--match`. Search indexing can lag a few seconds behind a fresh write, so a fuzzy match can
+  briefly return not-found for a memory that was just created, even though it exists.
 - Keep writes concise, factual, and easy to search. Never store passwords, API keys, OAuth tokens,
   or other secrets.
 

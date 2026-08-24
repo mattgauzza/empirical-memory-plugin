@@ -83,6 +83,9 @@ that only records memory when explicitly told to defeats the purpose of this ski
 - Append a correction or follow-up to an existing memory with `add_note_by_query`.
 - Patch an existing memory with `update_memory_by_query`.
 - Delete only when the user explicitly asks; use `delete_memory_by_query` with confirmation.
+- If the target memory was created earlier in this same session, pass its `memoryId` instead of
+  `query`. Search indexing can lag a few seconds behind a fresh write, so a fuzzy match can briefly
+  return not-found for a memory that was just created, even though it exists.
 - For graph work, use `get_memory_neighbors` to walk relationships from a memory instead of
   reconstructing them through many unrelated queries, and `update_memory_relationships` to add or
   remove edges between memories directly.
