@@ -1,5 +1,7 @@
 # empirical-memory
 
+[![smithery badge](https://smithery.ai/badge/matt-ha7x/empirical)](https://smithery.ai/servers/matt-ha7x/empirical)
+
 Cross-tool, cross-project memory for Claude Code, Codex CLI, and GitHub Copilot CLI, powered by
 [Empirical](https://empirical.gauzza.com).
 
