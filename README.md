@@ -62,7 +62,7 @@ tool-discovery round trip. It is not bundled with this plugin; install or update
 version separately:
 
 ```bash
-npm install -g https://empirical.gauzza.com/downloads/cli/empirical-cli-latest.tgz
+npm install -g @empirical-gauzza/cli
 ```
 
 For a first-time setup, run the interactive installer to connect the CLI and supported coding agents:
