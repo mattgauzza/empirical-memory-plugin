@@ -1,0 +1,21 @@
+{
+  "name": "empirical-guided-setup",
+  "displayName": "Empirical Guided Setup",
+  "version": "1.0.0",
+  "description": "Guided-interview blueprint personalization from the user's real answers.",
+  "author": {
+    "name": "Matt Gauzza",
+    "email": "mgauzza@gmail.com"
+  },
+  "homepage": "https://empirical.gauzza.com",
+  "repository": "https://github.com/mattgauzza/empirical-memory-plugin",
+  "license": "MIT",
+  "keywords": [
+    "memory",
+    "guided-setup",
+    "blueprints",
+    "onboarding",
+    "productivity"
+  ],
+  "skills": "./skills/"
+}

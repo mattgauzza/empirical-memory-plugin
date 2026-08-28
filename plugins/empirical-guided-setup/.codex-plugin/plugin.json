@@ -1,0 +1,34 @@
+{
+  "name": "empirical-guided-setup",
+  "version": "1.0.0",
+  "description": "Guided-interview blueprint personalization from the user's real answers.",
+  "author": {
+    "name": "Matt Gauzza",
+    "email": "mgauzza@gmail.com"
+  },
+  "homepage": "https://empirical.gauzza.com",
+  "repository": "https://github.com/mattgauzza/empirical-memory-plugin",
+  "license": "MIT",
+  "keywords": [
+    "memory",
+    "guided-setup",
+    "blueprints",
+    "onboarding",
+    "productivity"
+  ],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Empirical Guided Setup",
+    "shortDescription": "Personalize a blueprint via guided interview.",
+    "longDescription": "Conduct a guided-interview blueprint setup, asking each question conversationally and personalizing the blueprint's content from the user's real answers.",
+    "developerName": "Empirical",
+    "category": "Productivity",
+    "capabilities": [
+      "Read",
+      "Write"
+    ],
+    "defaultPrompt": [
+      "Run the guided interview for a blueprint."
+    ]
+  }
+}

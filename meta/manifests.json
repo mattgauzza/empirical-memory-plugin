@@ -104,6 +104,24 @@
         "longDescription": "Track todos by project with status, next actions, and completion evidence.",
         "defaultPrompt": ["Create or update a project todo."]
       }
+    },
+
+    {
+      "name": "empirical-guided-setup",
+      "displayName": "Empirical Guided Setup",
+      "version": "1.0.0",
+      "source": "./plugins/empirical-guided-setup",
+      "agentsPath": "./plugins/empirical-guided-setup",
+      "keywords": ["memory", "guided-setup", "blueprints", "onboarding", "productivity"],
+      "entryDescription": "Guided-interview blueprint personalization from the user's real answers.",
+      "descriptions": {
+        "default": "Guided-interview blueprint personalization from the user's real answers."
+      },
+      "catalog": {
+        "shortDescription": "Personalize a blueprint via guided interview.",
+        "longDescription": "Conduct a guided-interview blueprint setup, asking each question conversationally and personalizing the blueprint's content from the user's real answers.",
+        "defaultPrompt": ["Run the guided interview for a blueprint."]
+      }
     }
   ]
 }

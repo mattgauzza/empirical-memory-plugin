@@ -30,7 +30,7 @@ jobs:
 
       - name: Validate each plugin
         run: |
-          for dir in plugins/empirical-work-history plugins/empirical-scar-tissue plugins/empirical-todo; do
+          for dir in plugins/empirical-work-history plugins/empirical-scar-tissue plugins/empirical-todo plugins/empirical-guided-setup; do
             echo "--- $dir ---"
             claude plugin validate "$dir" --strict
           done
