@@ -93,6 +93,11 @@ that only records memory when explicitly told to defeats the purpose of this ski
   empirical memory record --category <category> --summary "<concise fact>" --tags <tag1,tag2>
   ```
 
+  **Code in the summary?** Never put backticks or `${...}` inside a double-quoted `--summary`; the
+  shell substitutes them away before the CLI runs and the write still succeeds with the code gone.
+  Prefer the MCP `record_graph_memory` tool (JSON, no shell). On the CLI use `--summary-file <path>`,
+  or `--summary -` with a single-quoted heredoc (`<<'EOF'`), or `--json-file <path>`.
+
   Both dedupe against near-duplicate existing memories and auto-link related ones by default; pass
   `--no-dedupe` / `--no-auto-link` on the CLI only when you deliberately want to skip one of those.
 

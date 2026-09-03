@@ -1,7 +1,7 @@
 {
   "name": "empirical-todo",
   "displayName": "Empirical Todo",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Project-based todos with status, next actions, and completion evidence.",
   "author": {
     "name": "Matt Gauzza",

@@ -5,37 +5,52 @@
     "Never hand-edit the generated files listed in scripts/build-manifests.mjs.",
     "CI runs the generator with --check and fails if the committed files drift."
   ],
-
   "marketplace": {
     "name": "empirical-memory",
     "displayName": "Empirical Memory",
-    "owner": { "name": "Matt Gauzza", "email": "mgauzza@gmail.com" },
+    "owner": {
+      "name": "Matt Gauzza",
+      "email": "mgauzza@gmail.com"
+    },
     "descriptions": {
       "claude": "Cross-tool, cross-project memory for Claude Code, Codex CLI, and GitHub Copilot CLI, powered by Empirical.",
       "copilot": "Cross-tool, cross-project memory and optional workflow plugins, powered by Empirical."
     }
   },
-
   "shared": {
-    "author": { "name": "Matt Gauzza", "email": "mgauzza@gmail.com" },
+    "author": {
+      "name": "Matt Gauzza",
+      "email": "mgauzza@gmail.com"
+    },
     "homepage": "https://empirical.gauzza.com",
     "repository": "https://github.com/mattgauzza/empirical-memory-plugin",
     "license": "MIT",
     "skills": "./skills/",
     "developerName": "Empirical",
     "category": "Productivity",
-    "capabilities": ["Read", "Write"]
+    "capabilities": [
+      "Read",
+      "Write"
+    ]
   },
-
   "plugins": [
     {
       "name": "empirical-memory",
       "displayName": "Empirical Memory",
-      "version": "1.3.1",
+      "version": "1.3.2",
       "source": ".",
       "agentsPath": "./",
       "mcpServers": "./.mcp.json",
-      "keywords": ["memory", "context", "mcp", "productivity", "personal-assistant", "crm", "leads", "workspaces"],
+      "keywords": [
+        "memory",
+        "context",
+        "mcp",
+        "productivity",
+        "personal-assistant",
+        "crm",
+        "leads",
+        "workspaces"
+      ],
       "entryDescription": "Core Empirical memory and MCP connection across coding agents.",
       "descriptions": {
         "claude": "Cross-tool, cross-project memory for Claude Code. Start an idea in ChatGPT, pick it up in Claude with full context carried over. Track leads and relationships as durable memory instead of a separate CRM. Organize memory into separate workspaces for personal, team, or client contexts. Recalls prior decisions and conventions across sessions, and persists new ones as you work.",
@@ -51,14 +66,18 @@
         ]
       }
     },
-
     {
       "name": "empirical-work-history",
       "displayName": "Empirical Work History",
       "version": "1.1.0",
       "source": "./plugins/empirical-work-history",
       "agentsPath": "./plugins/empirical-work-history",
-      "keywords": ["memory", "work-history", "context", "productivity"],
+      "keywords": [
+        "memory",
+        "work-history",
+        "context",
+        "productivity"
+      ],
       "entryDescription": "Concise completed-work summaries for future agents.",
       "descriptions": {
         "default": "Concise completed-work summaries for future agents."
@@ -66,17 +85,23 @@
       "catalog": {
         "shortDescription": "Completed-work summaries for future agents.",
         "longDescription": "Record concise, timestamped summaries of meaningful completed work.",
-        "defaultPrompt": ["Record a concise summary of this completed work."]
+        "defaultPrompt": [
+          "Record a concise summary of this completed work."
+        ]
       }
     },
-
     {
       "name": "empirical-scar-tissue",
       "displayName": "Empirical Scar Tissue",
       "version": "1.1.0",
       "source": "./plugins/empirical-scar-tissue",
       "agentsPath": "./plugins/empirical-scar-tissue",
-      "keywords": ["memory", "failure-patterns", "postmortem", "productivity"],
+      "keywords": [
+        "memory",
+        "failure-patterns",
+        "postmortem",
+        "productivity"
+      ],
       "entryDescription": "Recurring failure patterns and prevention guidance.",
       "descriptions": {
         "default": "Recurring failure patterns and prevention guidance."
@@ -84,17 +109,23 @@
       "catalog": {
         "shortDescription": "Failure patterns and prevention guidance.",
         "longDescription": "Record recurring failure patterns, sharp edges, and prevention guidance.",
-        "defaultPrompt": ["Record a verified prevention lesson from this failure."]
+        "defaultPrompt": [
+          "Record a verified prevention lesson from this failure."
+        ]
       }
     },
-
     {
       "name": "empirical-todo",
       "displayName": "Empirical Todo",
-      "version": "1.1.0",
+      "version": "1.1.1",
       "source": "./plugins/empirical-todo",
       "agentsPath": "./plugins/empirical-todo",
-      "keywords": ["memory", "todo", "tasks", "productivity"],
+      "keywords": [
+        "memory",
+        "todo",
+        "tasks",
+        "productivity"
+      ],
       "entryDescription": "Project-based todos with status, next actions, and completion evidence.",
       "descriptions": {
         "default": "Project-based todos with status, next actions, and completion evidence."
@@ -102,17 +133,24 @@
       "catalog": {
         "shortDescription": "Project-based actionable follow-ups.",
         "longDescription": "Track todos by project with status, next actions, and completion evidence.",
-        "defaultPrompt": ["Create or update a project todo."]
+        "defaultPrompt": [
+          "Create or update a project todo."
+        ]
       }
     },
-
     {
       "name": "empirical-guided-setup",
       "displayName": "Empirical Guided Setup",
       "version": "1.0.0",
       "source": "./plugins/empirical-guided-setup",
       "agentsPath": "./plugins/empirical-guided-setup",
-      "keywords": ["memory", "guided-setup", "blueprints", "onboarding", "productivity"],
+      "keywords": [
+        "memory",
+        "guided-setup",
+        "blueprints",
+        "onboarding",
+        "productivity"
+      ],
       "entryDescription": "Guided-interview blueprint personalization from the user's real answers.",
       "descriptions": {
         "default": "Guided-interview blueprint personalization from the user's real answers."
@@ -120,7 +158,9 @@
       "catalog": {
         "shortDescription": "Personalize a blueprint via guided interview.",
         "longDescription": "Conduct a guided-interview blueprint setup, asking each question conversationally and personalizing the blueprint's content from the user's real answers.",
-        "defaultPrompt": ["Run the guided interview for a blueprint."]
+        "defaultPrompt": [
+          "Run the guided interview for a blueprint."
+        ]
       }
     }
   ]

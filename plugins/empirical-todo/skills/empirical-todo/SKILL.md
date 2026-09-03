@@ -67,5 +67,10 @@ empirical memory query --match "todo <project>"
 empirical memory record --category project --node-type goal --summary "<action and outcome>" --tags todo,<project> --data '{"status":"open","project":"<project>"}'
 ```
 
+**Code in the summary?** Never put backticks or `${...}` inside a double-quoted `--summary`; the
+shell substitutes them away before the CLI runs and the write still succeeds with the code gone.
+Prefer the MCP `record_graph_memory` tool (JSON, no shell). On the CLI use `--summary-file <path>`,
+or `--summary -` with a single-quoted heredoc (`<<'EOF'`), or `--json-file <path>`.
+
 Never store credentials, tokens, raw transcripts, or private health details that are not necessary
 to define the user's requested goal.

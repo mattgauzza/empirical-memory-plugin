@@ -6,13 +6,13 @@
   },
   "metadata": {
     "description": "Cross-tool, cross-project memory and optional workflow plugins, powered by Empirical.",
-    "version": "1.3.1"
+    "version": "1.3.2"
   },
   "plugins": [
     {
       "name": "empirical-memory",
       "description": "Core Empirical memory and MCP connection across coding agents.",
-      "version": "1.3.1",
+      "version": "1.3.2",
       "source": "."
     },
     {
@@ -30,7 +30,7 @@
     {
       "name": "empirical-todo",
       "description": "Project-based todos with status, next actions, and completion evidence.",
-      "version": "1.1.0",
+      "version": "1.1.1",
       "source": "./plugins/empirical-todo"
     },
     {
