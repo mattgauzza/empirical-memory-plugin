@@ -1,6 +1,6 @@
 {
   "name": "empirical-memory",
-  "version": "1.3.2",
+  "version": "1.3.3",
   "description": "Cross-tool, cross-project memory for Codex CLI. Start an idea in ChatGPT, pick it up in Codex with full context carried over. Track leads and relationships as durable memory instead of a separate CRM. Organize memory into separate workspaces for personal, team, or client contexts. Recalls prior decisions and conventions across sessions, and persists new ones as you work.",
   "author": {
     "name": "Matt Gauzza",

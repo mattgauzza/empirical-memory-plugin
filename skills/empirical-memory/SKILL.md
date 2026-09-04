@@ -49,7 +49,15 @@ If you are not sure whether a task qualifies, treat it as if it does.
    results can be large. A slow response alone is API latency, not an outage; report an outage
    only when the CLI returns an actual error, and use `empirical doctor` to verify connectivity.
 
-3. If the CLI is unavailable, use the connected MCP `query_memories` tool. Use filters such as
+3. Scope recall to the project you are in. Derive a project tag from the repository name
+   (`git rev-parse --show-toplevel`, then the folder name) or, outside a repo, the working
+   directory name, lowercased with spaces as hyphens. Pass it on every recall and every record:
+   CLI `--tags <project>`, MCP `tags: ["<project>"]`. If a scoped query returns nothing (CLI) or
+   comes back with a `retrievalNote` (MCP), nothing from this project matched: retry without the
+   tag if needed, but treat what comes back as background from other projects, not as facts about
+   this one, and say so if you rely on it.
+
+4. If the CLI is unavailable, use the connected MCP `query_memories` tool. Use filters such as
    `category`, `tags`, `nodeType`, and `monthKey` when they improve recall. For "recent/latest/
    today" requests, prefer `list_memories` (CLI: `empirical memory list --recent`, see `empirical
    doc memory`) over a match query. For exhaustive topic retrieval, use the topic as a tag and

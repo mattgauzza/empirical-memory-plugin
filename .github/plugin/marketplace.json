@@ -6,13 +6,13 @@
   },
   "metadata": {
     "description": "Cross-tool, cross-project memory and optional workflow plugins, powered by Empirical.",
-    "version": "1.3.2"
+    "version": "1.3.3"
   },
   "plugins": [
     {
       "name": "empirical-memory",
       "description": "Core Empirical memory and MCP connection across coding agents.",
-      "version": "1.3.2",
+      "version": "1.3.3",
       "source": "."
     },
     {

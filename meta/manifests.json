@@ -37,7 +37,7 @@
     {
       "name": "empirical-memory",
       "displayName": "Empirical Memory",
-      "version": "1.3.2",
+      "version": "1.3.3",
       "source": ".",
       "agentsPath": "./",
       "mcpServers": "./.mcp.json",
