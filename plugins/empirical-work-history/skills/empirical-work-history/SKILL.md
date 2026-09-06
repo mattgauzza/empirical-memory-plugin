@@ -100,9 +100,12 @@ record_graph_memory({
       repoPath: "<git root>", worktreePath: "<worktree path>", branch: "<branch>",
       startCommit: "<current HEAD>", relatedCommits: [{ hash: "<hash>", subject: "<subject>" }]
     }
-  }
+  },
+  links: [{ relationType: "contributes_to", targetQuery: "<the plan, todo, or goal this work advanced>" }]
 })
 ```
+
+Link the work to what it advanced.
 
 CLI fallback:
 

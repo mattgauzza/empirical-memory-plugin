@@ -69,7 +69,7 @@
     {
       "name": "empirical-work-history",
       "displayName": "Empirical Work History",
-      "version": "1.1.1",
+      "version": "1.1.2",
       "source": "./plugins/empirical-work-history",
       "agentsPath": "./plugins/empirical-work-history",
       "keywords": [
@@ -93,7 +93,7 @@
     {
       "name": "empirical-scar-tissue",
       "displayName": "Empirical Scar Tissue",
-      "version": "1.1.1",
+      "version": "1.1.2",
       "source": "./plugins/empirical-scar-tissue",
       "agentsPath": "./plugins/empirical-scar-tissue",
       "keywords": [

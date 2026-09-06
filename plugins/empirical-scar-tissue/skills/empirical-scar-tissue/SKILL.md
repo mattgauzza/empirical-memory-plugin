@@ -102,9 +102,12 @@ record_graph_memory({
       repoPath: "<git root>", worktreePath: "<worktree path>", branch: "<branch>",
       startCommit: "<current HEAD>", relatedCommits: [{ hash: "<hash>", subject: "<subject>" }]
     }
-  }
+  },
+  links: [{ relationType: "derived_from", targetQuery: "<the incident, work-history entry, or decision this lesson came from>" }]
 })
 ```
+
+Link the lesson to what it came from; a lesson with no origin cannot be walked back to its cause.
 
 CLI fallback:
 
