@@ -18,7 +18,10 @@ Create one concise, queryable memory with:
 - `verification`: tests, checks, or manual validation performed
 - `next action`: only when follow-up remains
 
-Prefer a single durable summary over a transcript or a memory for every intermediate step.
+Record one memory per completed unit of work, not one memory per session. A session that shipped a
+fix, a migration, and a copy change records three entries. Each summary names the change, the
+component, and the date so a question about any one of them finds it. Do not record intermediate
+steps that did not ship, and do not fold several shipped things into one summary.
 
 ### These are notes about YOUR work, not facts about the user
 

@@ -21,6 +21,12 @@ Create one concise, queryable memory containing:
 
 Prefer durable lessons over incident transcripts.
 
+One lesson per memory. If a debugging session surfaced two root causes, record two scar-tissue
+memories. The summary must contain the fix or the failing symptom in the words a future agent would
+search for (the error text, the function name, the flag), plus the date.
+
+Record it in Empirical before writing anything to a local memory file. A local note is not a record.
+
 ### These are notes about YOUR mistakes, not facts about the user
 
 Scar tissue records what an agent got wrong and how to avoid it next time. The user did not do
