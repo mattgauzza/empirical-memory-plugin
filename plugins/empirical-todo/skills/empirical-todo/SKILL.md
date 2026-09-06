@@ -49,7 +49,7 @@ at all.
 Using the Empirical MCP tools (preferred):
 
 ```text
-query_memories({ match: "todo <project>" })
+query_memories({ tagsAll: ["todo", "<project>"], status: ["open", "in_progress"] })
 
 record_graph_memory({
   category: "project",
@@ -60,10 +60,15 @@ record_graph_memory({
 })
 ```
 
+`tagsAll` is an AND match (both tags must be present) — the OR-only `tags` filter would also
+return every other project's todos. `status` narrows to what's still actionable; leaving it out
+still excludes closed statuses (`done`, `complete`, `completed`, `cancelled`, `canceled`,
+`closed`) by default and still surfaces a todo that has no status yet, marked `statusMissing`.
+
 CLI fallback:
 
 ```text
-empirical memory query --match "todo <project>"
+empirical memory query --tags-all todo,<project> --status open,in_progress
 empirical memory record --category project --node-type goal --summary "<action and outcome>" --tags todo,<project> --data '{"status":"open","project":"<project>"}'
 ```
 

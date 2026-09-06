@@ -30,7 +30,7 @@
     {
       "name": "empirical-todo",
       "description": "Project-based todos with status, next actions, and completion evidence.",
-      "version": "1.1.1",
+      "version": "1.1.2",
       "source": "./plugins/empirical-todo"
     },
     {
