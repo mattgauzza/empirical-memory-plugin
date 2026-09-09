@@ -80,6 +80,18 @@ that only records memory when explicitly told to defeats the purpose of this ski
   codebase, stop: that is work-history or scar-tissue, and filing it here makes it indistinguishable
   from something the user actually said or lived. Downstream features read these as the user's life.
 
+  **Say which one it is: pass `authorType`.** Same distinction, made explicit in the data instead
+  of left to be guessed from which transport you happened to use. `authorType: "user"` when the
+  memory is about the user — something they said, decided, prefer, or are working toward.
+  `authorType: "agent"` when it is your own work. Do not set `"agent"` merely because you are the
+  one calling: an agent writing down a real fact about the user is recording a user-authored fact,
+  and that is the whole point of this tool. On the CLI it is `--author-type user|agent`. Omit it
+  when you genuinely cannot tell, and it stays unresolved rather than being invented.
+
+  This is read back at retrieval time to keep an agent's session notes out of answers about the
+  user's own life and work, so a wrong value does not show up as a warning, it shows up as the
+  wrong memories coming back.
+
 - Append a correction or follow-up to an existing memory with `add_note_by_query`.
 - Patch an existing memory with `update_memory_by_query`.
 - Delete only when the user explicitly asks; use `delete_memory_by_query` with confirmation.

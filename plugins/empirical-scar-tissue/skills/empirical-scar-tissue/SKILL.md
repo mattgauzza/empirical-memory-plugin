@@ -89,6 +89,8 @@ Using the Empirical MCP memory tools (preferred):
 ```text
 record_graph_memory({
   category: "debugging",
+  // A lesson the agent learned from its own mistake: agent-authored by definition.
+  authorType: "agent",
   summary: "Scar tissue: <symptom>; cause: <cause>; prevention: <prevention>; verification: <verification>",
   tags: ["<project>", "scar-tissue"],
   mass: 1,

@@ -87,6 +87,10 @@ Using the Empirical MCP memory tools (preferred):
 ```text
 record_graph_memory({
   category: "build",
+  // This skill records YOUR work by definition, so the author really is the agent.
+  // Do not copy this line into general memory writes: there, authorship depends on
+  // whether the fact is about the user or about you.
+  authorType: "agent",
   summary: "<timestamped completed-work summary>",
   tags: ["<project>", "work-history"],
   mass: 1,

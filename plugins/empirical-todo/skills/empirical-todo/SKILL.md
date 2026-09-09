@@ -56,7 +56,10 @@ record_graph_memory({
   nodeType: "goal",
   summary: "<action and outcome>",
   tags: ["todo", "<project>"],
-  data: { project: "<project>", status: "open", nextAction: "<the next concrete step>" }
+  data: { project: "<project>", status: "open", nextAction: "<the next concrete step>" },
+  // Whose item is this? A commitment the user made or asked for is authorType "user";
+  // a follow-up you are leaving yourself is "agent". Omit it if you cannot tell.
+  authorType: "user"
 })
 ```
 
