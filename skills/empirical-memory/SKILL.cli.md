@@ -46,6 +46,18 @@ If you are not sure whether a task qualifies, treat it as if it does.
    exact flag) for "recent/latest/today" requests instead of a match query.
 3. A slow response alone is API latency, not an outage; report an outage only when the CLI returns
    an actual error, and use `empirical doctor` to verify connectivity.
+4. A filtered query (`--category`, `--tags`, `--tags-all`, `--status`) that returns nothing is not proof the
+   memory doesn't exist — it only proves nothing matched that exact filter combination. A memory's
+   real category or tag convention often does not match how you or the user would naturally
+   describe it in conversation (e.g. described as "an idea" but stored under a different category;
+   tagged with a project's short name where you tried its full one). Before concluding a memory
+   doesn't exist, retry at least once with the filter relaxed or removed — category dropped, tags
+   loosened, or a plain unfiltered `--match` — rather than only varying the search phrase.
+5. If a specific recall miss turns out to have a narrow, demonstrable cause (a filter mismatch, a
+   stale tag, a wrong category), stop there. Report that cause and move on — do not generalize one
+   miss into a theory about the memory system being broken and then go build measurement or
+   debugging work around the theory. Confirm the narrow cause is insufficient before entertaining a
+   systemic explanation, not after.
 
 ## Follow the current user policy
 
@@ -87,6 +99,13 @@ that only records memory when explicitly told to defeats the purpose of this ski
   default, the same as any other Empirical client — you do not need a separate duplicate check
   first. Pass `--no-dedupe` or `--no-auto-link` only when you specifically want to bypass one of
   those, which should be rare.
+
+  **One idea per memory, not a bundle.** When a turn produces several distinct facts or ideas
+  worth keeping, record each with its own `empirical memory record` call rather than folding them
+  into one large memory. Calling it multiple times in the same turn is expected usage, not
+  overhead to be minimized. A compound memory is harder to find later (a query matching one idea
+  in it won't surface the others as well) and harder to link precisely into the graph than several
+  atomic ones.
 
   **Record facts about the USER, not about your own work.** You are a scribe here. "Matt prefers
   short status updates" is a memory; "refactored the cluster selector, tests pass" is your diary

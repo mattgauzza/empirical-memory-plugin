@@ -49,11 +49,34 @@ If you are not sure whether a task qualifies, treat it as if it does.
    results can be large. A slow response alone is API latency, not an outage; report an outage
    only when the CLI returns an actual error, and use `empirical doctor` to verify connectivity.
 
-3. If the CLI is unavailable, use the connected MCP `query_memories` tool. Use filters such as
+3. Scope recall to the project you are in. Derive a project tag from the repository name
+   (`git rev-parse --show-toplevel`, then the folder name) or, outside a repo, the working
+   directory name, lowercased with spaces as hyphens. Pass it on every recall and every record:
+   CLI `--tags <project>`, MCP `tags: ["<project>"]`. If a scoped query returns nothing (CLI) or
+   comes back with a `retrievalNote` (MCP), nothing from this project matched: retry without the
+   tag if needed, but treat what comes back as background from other projects, not as facts about
+   this one, and say so if you rely on it.
+
+4. If the CLI is unavailable, use the connected MCP `query_memories` tool. Use filters such as
    `category`, `tags`, `nodeType`, and `monthKey` when they improve recall. For "recent/latest/
    today" requests, prefer `list_memories` (CLI: `empirical memory list --recent`, see `empirical
    doc memory`) over a match query. For exhaustive topic retrieval, use the topic as a tag and
    follow pagination.
+
+5. A filtered query (category, tags, nodeType) that returns nothing is not proof the memory
+   doesn't exist — it only proves nothing matched that exact filter combination. A memory's
+   real category or tag convention often does not match how you or the user would naturally
+   describe it in conversation (e.g. described as "an idea" but stored under a different
+   category; tagged with a project's short name where you tried its full one). Before
+   concluding a memory doesn't exist, retry at least once with the filter relaxed or removed —
+   category dropped, tags loosened to an OR match, or a plain unfiltered query — rather than
+   only varying the search phrase.
+
+6. If a specific recall miss turns out to have a narrow, demonstrable cause (a filter mismatch,
+   a stale tag, a wrong category), stop there. Report that cause and move on — do not generalize
+   one miss into a theory about the memory system being broken and then go build measurement or
+   debugging work around the theory. Confirm the narrow cause is insufficient before entertaining
+   a systemic explanation, not after.
 
 ## Follow the current user policy
 
@@ -93,8 +116,20 @@ that only records memory when explicitly told to defeats the purpose of this ski
   empirical memory record --category <category> --summary "<concise fact>" --tags <tag1,tag2>
   ```
 
+  **Code in the summary?** Never put backticks or `${...}` inside a double-quoted `--summary`; the
+  shell substitutes them away before the CLI runs and the write still succeeds with the code gone.
+  Prefer the MCP `record_graph_memory` tool (JSON, no shell). On the CLI use `--summary-file <path>`,
+  or `--summary -` with a single-quoted heredoc (`<<'EOF'`), or `--json-file <path>`.
+
   Both dedupe against near-duplicate existing memories and auto-link related ones by default; pass
   `--no-dedupe` / `--no-auto-link` on the CLI only when you deliberately want to skip one of those.
+
+  **One idea per memory, not a bundle.** When a turn produces several distinct facts or ideas
+  worth keeping, record each as its own call rather than folding them into one large memory.
+  `record_graph_memory` (and `empirical memory record`) can and should be called multiple times
+  in the same turn — that is expected usage, not overhead to be minimized. A compound memory is
+  harder to find later (a query matching one idea in it won't surface the others as well) and
+  harder to link precisely into the graph than several atomic ones.
 
   **Record facts about the USER, not about your own work.** You are a scribe here. "Matt prefers
   short status updates" is a memory; "refactored the cluster selector, tests pass" is your diary
