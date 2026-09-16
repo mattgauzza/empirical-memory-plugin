@@ -1,13 +1,50 @@
 ---
 name: empirical-scar-tissue
-description: Record recurring failure patterns, sharp edges, and prevention guidance so future agents avoid repeating expensive mistakes.
+description: Check for, and record, known failure patterns and sharp edges in this project. Use BEFORE risky or repeated work - deploying, releasing, migrating, running a destructive or bulk command, editing a subsystem that has bitten before, or retrying something that failed - to recall what already went wrong there. Also use AFTER a failure, surprise, or corrected misconception, to record the lesson.
 ---
 
 # Empirical Scar Tissue
 
-Use this Skill when work reveals a recurring failure mode, a sharp edge in the project, or a
-corrected misconception that future agents should avoid. This is different from work history:
-work history records what was completed, while scar tissue records what should not be repeated.
+Two halves, and the recall half is the one that gets skipped.
+
+Scar tissue is what should not be repeated, as opposed to work history, which is what was
+completed. A lesson nobody reads is just a diary, so this Skill starts with reading.
+
+## Query BEFORE you act
+
+Before deploying, releasing, migrating, running a destructive or bulk command, touching a
+subsystem that has bitten before, or retrying something that just failed, ask what is already
+known. It costs one call.
+
+MCP:
+
+```text
+query_memories({
+  query: "<what you are about to do, in plain words>",
+  tags: ["<project>", "scar-tissue"],
+  topK: 5
+})
+```
+
+CLI:
+
+```text
+empirical memory query --match "<what you are about to do>" --tags scar-tissue --top-k 5
+```
+
+**The `scar-tissue` tag in the filter is required, not decoration.** Retrieval excludes agent
+process notes from ordinary questions by default, so a normal query returns none of this
+material. An explicit tag filter is what turns it back on. Without the tag you will get a
+confident, empty-handed answer.
+
+Why this is a hard rule rather than a nicety, measured 2026-09-16 on a real two-month corpus:
+393 scar-tissue memories, **71.2% of which had never once been retrieved**, against 59.3% for
+ordinary memories of the same age. 151 of them carry an explicit "this happened again" marker.
+The lessons were not ignored. They were never read.
+
+When a result contradicts the current repository state or the user's latest instruction, the
+current state and the user win. Say that you found the older lesson and why you are departing
+from it, rather than silently following or silently ignoring it.
 
 ## Record useful scar tissue
 
@@ -123,8 +160,9 @@ form is less convenient.
 
 Never store credentials, tokens, private keys, raw prompts, or unrelated transient output.
 
-## Query before repeating a risky path
+## After recording, check the recall side
 
-Before changing a subsystem with known sharp edges, query memories using the project and
-`scar-tissue` tag. Follow the latest user instruction and current repository state if they
-conflict with an older lesson.
+A lesson is only worth the query that finds it. When you record one, write the summary with the
+words a future agent would actually search for: the command, the file, the error text, the
+subsystem. "Scar tissue: deploy" is unfindable. "railway up from the repo root uploads the
+working directory, not the service" is findable.

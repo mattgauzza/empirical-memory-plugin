@@ -23,8 +23,8 @@
     },
     {
       "name": "empirical-scar-tissue",
-      "description": "Recurring failure patterns and prevention guidance.",
-      "version": "1.1.2",
+      "description": "Check for, and record, known failure patterns and sharp edges. Recall before risky work, record after a failure.",
+      "version": "1.2.0",
       "source": "./plugins/empirical-scar-tissue"
     },
     {

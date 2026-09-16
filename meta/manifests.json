@@ -93,23 +93,25 @@
     {
       "name": "empirical-scar-tissue",
       "displayName": "Empirical Scar Tissue",
-      "version": "1.1.2",
+      "version": "1.2.0",
       "source": "./plugins/empirical-scar-tissue",
       "agentsPath": "./plugins/empirical-scar-tissue",
       "keywords": [
         "memory",
         "failure-patterns",
         "postmortem",
+        "prevention",
         "productivity"
       ],
-      "entryDescription": "Recurring failure patterns and prevention guidance.",
+      "entryDescription": "Check for, and record, known failure patterns and sharp edges. Recall before risky work, record after a failure.",
       "descriptions": {
-        "default": "Recurring failure patterns and prevention guidance."
+        "default": "Check for, and record, known failure patterns and sharp edges. Recall before risky work, record after a failure."
       },
       "catalog": {
-        "shortDescription": "Failure patterns and prevention guidance.",
-        "longDescription": "Record recurring failure patterns, sharp edges, and prevention guidance.",
+        "shortDescription": "Recall known failure patterns before risky work; record new ones after.",
+        "longDescription": "Query known failure patterns and sharp edges before deploying, migrating, running a destructive command, or retrying something that failed, and record new prevention lessons after a failure.",
         "defaultPrompt": [
+          "What scar tissue do we have for this part of the project?",
           "Record a verified prevention lesson from this failure."
         ]
       }
