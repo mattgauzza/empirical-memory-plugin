@@ -18,8 +18,12 @@ Create one durable memory with:
 - `nodeType`: `goal` (the graph model does not use a separate todo node type)
 - `summary`: the action, desired outcome, and project name
 - `tags`: `todo`, a normalized project tag, and optional area/status tags
-- `data`: structured fields. `status` is REQUIRED (see below); `project`, `priority`, `dueDate`,
-  `nextAction` and `source` when known
+- `data`: structured fields. `status` is REQUIRED (see below); `project`, `priority`, `nextAction`
+  and `source` when known
+- `dueAt` (top-level parameter, ISO 8601), when the todo has a real deadline. This is what makes
+  Empirical remind the user: an email with a calendar entry now, a nudge when due, and a notice to
+  every agent's next Empirical call. A date inside `data` is only text; nothing fires for it. Plans
+  cap concurrent open reminders, so set `dueAt` for deadlines, not for every todo.
 
 Keep the action concrete and independently completable. Split a request into multiple todos when
 the actions have different owners, projects, or completion criteria.
@@ -28,6 +32,10 @@ the actions have different owners, projects, or completion criteria.
 
 - Query by project and `todo` before creating a possible duplicate.
 - Update the existing memory when the action, status, priority, due date, or next action changes.
+  Re-dating means `update_memory_by_query` with a new `dueAt`; the calendar entry updates in place.
+- When the user says a due todo is handled, close its reminder with `acknowledge_reminder`
+  (`memoryId` from the reminder notice) as well as setting `status`, or the alert keeps reaching
+  their other agents.
 - Mark a todo complete only when the user says it is done or durable verification proves it is done.
 - Preserve a concise completion note and verification; do not silently delete completed work.
 - Ask before changing project ownership or converting a todo into an unrelated memory type.

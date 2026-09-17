@@ -37,7 +37,7 @@
     {
       "name": "empirical-memory",
       "displayName": "Empirical Memory",
-      "version": "1.3.3",
+      "version": "1.3.4",
       "source": ".",
       "agentsPath": "./",
       "mcpServers": "./.mcp.json",
@@ -119,7 +119,7 @@
     {
       "name": "empirical-todo",
       "displayName": "Empirical Todo",
-      "version": "1.1.2",
+      "version": "1.1.3",
       "source": "./plugins/empirical-todo",
       "agentsPath": "./plugins/empirical-todo",
       "keywords": [

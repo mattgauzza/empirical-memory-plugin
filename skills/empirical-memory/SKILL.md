@@ -193,6 +193,27 @@ Use these when connected: `get_empirical_policy`, `query_memories`, `list_memori
 graph work, use `get_memory_neighbors` and `update_memory_relationships` when available instead of
 reconstructing relationships through many unrelated calls.
 
+## Reminders — set them, relay them, close them
+
+Any memory can carry a due date. Empirical then brings it back: an email with a calendar entry
+when the reminder is set, a nudge when it is due, and a notice attached to the next Empirical
+response each of the user's agents receives.
+
+- **Set one** when the user says "remind me", names a deadline, or a todo has a real due date.
+  Use the `dueAt` parameter on `record_graph_memory` / `update_memory_by_query` (ISO 8601), or
+  `empirical memory record ... --due 2026-10-14T09:00:00Z` on the CLI. `dueAt` is a real field the
+  server filters and fires on; a date written inside `data` is text and nothing will ever fire.
+- **Relay it.** If any Empirical result starts with `REMINDER DUE`, or a CLI command prints a
+  banner that starts with `REMINDER DUE`, tell the user about it in your own words BEFORE the task
+  you were doing, then ask whether to mark it done. Each agent is shown a reminder once; if you do
+  not relay it, the user does not hear it from you.
+- **Close it** when the user says it is handled: `acknowledge_reminder` with the `memoryId` from
+  the notice (or `state: "cancelled"` to drop it), or `empirical memory acknowledge --memory-id <id>`
+  (`--cancel` to drop). Closing frees the slot; plans cap concurrent open reminders.
+- **What is due?** `query_memories` with `dueBefore` set to now and `remindState: ["pending"]`, or
+  `empirical memory query --match "what is due" --due-before <now> --remind-state pending`.
+  Dueness is a filter; semantic search will not rank a memory higher because it is due.
+
 ## Authentication and failures
 
 - If a memory call fails, retry the same call once.
