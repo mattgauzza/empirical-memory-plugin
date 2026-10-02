@@ -59,7 +59,7 @@ Record a walkthrough showing the installed plugin, account connection, workspace
 
 ## Upload and existing plugin identity
 
-Use the existing OpenAI plugin card if Empirical is already submitted or published. Check its downloaded release manifest: the package `name` must match the existing package identity before uploading an update. This source package uses `empirical-memory`; the public display name is `Empirical Memory`. Do not create a duplicate plugin to bypass held tool checks. The endpoint URL is preserved.
+Use the existing OpenAI plugin card if Empirical is already submitted or published. The package `name` must match the existing package identity before uploading an update. This source package uses `app-699db5f04b788191a4f9ee070d3e5d67`, configured in `openaiSubmission.name`; the public display name is `Empirical Memory`. The native marketplace plugin keeps its `empirical-memory` identity. Do not create a duplicate plugin to bypass held tool checks. The endpoint URL is preserved.
 
 Upload the complete ZIP, choose the verified developer identity and inspect the imported listing, skills and review cases. All four listing URLs are provided. The eight imported cases are managed through the ZIP: edit the canonical metadata and rebuild if they need changes. Keep saved country availability by omitting `publication.countries`.
 

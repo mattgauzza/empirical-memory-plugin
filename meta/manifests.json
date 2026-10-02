@@ -173,6 +173,7 @@
     }
   ],
   "openaiSubmission": {
+    "name": "app-699db5f04b788191a4f9ee070d3e5d67",
     "mcpUrl": "https://empirical.gauzza.com/mcp",
     "review": {
       "test_cases": {

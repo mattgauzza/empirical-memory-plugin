@@ -28,7 +28,7 @@ export function buildPackage(root = projectRoot, { demoUrl } = {}) {
   }
   const manifest = {
     $schema: 'https://agent-plugins.org/schemas/1.0.0/plugin.schema.json',
-    name: core.name,
+    name: meta.openaiSubmission.name ?? core.name,
     version: core.version,
     description: core.descriptions.openai,
     author: { ...meta.shared.author, url: meta.shared.homepage },

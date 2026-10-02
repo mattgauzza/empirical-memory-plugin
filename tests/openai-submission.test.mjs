@@ -16,6 +16,7 @@ const patchManifest = (files, change) => {
 
 test('core package has one portable root, MCP-first skill, assets and eight review cases', () => {
   const files = fixture();
+  assert.equal(manifest(files).name, 'app-699db5f04b788191a4f9ee070d3e5d67');
   assert.deepEqual([...files.keys()].sort(), [
     'LICENSE', 'assets/logo.png', 'mcp.json', 'plugin.json', 'skills/empirical-memory/SKILL.md'
   ]);
