@@ -13,12 +13,18 @@ jobs:
 
       - uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          node-version: '22'
 
       # Fails if any committed manifest drifts from meta/manifests.json.
       # Fix locally with: node scripts/build-manifests.mjs
       - name: Manifests match meta/manifests.json
         run: node scripts/build-manifests.mjs --check
+
+      - name: OpenAI package regression tests
+        run: node --test tests/openai-submission.test.mjs
+
+      - name: Build OpenAI core submission ZIP
+        run: node scripts/build-openai-submission.mjs
 
       - name: Install Claude Code
         run: npm install -g @anthropic-ai/claude-code

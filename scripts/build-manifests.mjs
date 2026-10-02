@@ -68,6 +68,8 @@ const codexPlugin = (plugin) => ({
     category: shared.category,
     capabilities: shared.capabilities,
     ...(plugin.catalog.websiteURL ? { websiteURL: plugin.catalog.websiteURL } : {}),
+    ...Object.fromEntries(['supportURL', 'privacyPolicyURL', 'termsOfServiceURL', 'composerIcon', 'logo']
+      .filter((key) => plugin.catalog[key]).map((key) => [key, plugin.catalog[key]])),
     defaultPrompt: plugin.catalog.defaultPrompt,
   },
 });
