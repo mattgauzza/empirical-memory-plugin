@@ -27,7 +27,6 @@ Package documentation:
 - [Work History](./plugins/empirical-work-history/README.md)
 - [Scar Tissue](./plugins/empirical-scar-tissue/README.md)
 - [Todo](./plugins/empirical-todo/README.md)
-- [OpenAI submission package and review procedure](./docs/openai-submission.md)
 
 ## Install
 
