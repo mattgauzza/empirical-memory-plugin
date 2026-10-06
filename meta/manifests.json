@@ -53,7 +53,7 @@
       ],
       "entryDescription": "Core Empirical memory and MCP connection across coding agents.",
       "descriptions": {
-        "claude": "Cross-tool, cross-project memory for Claude Code. Start an idea in ChatGPT, pick it up in Claude with full context carried over. Track leads and relationships as durable memory instead of a separate CRM. Organize memory into separate workspaces for personal, team, or client contexts. Recalls prior decisions and conventions across sessions, and persists new ones as you work.",
+        "claude": "Cross-tool, cross-project memory for Claude Code: recall prior decisions and save new ones across sessions and workspaces.",
         "codex": "Cross-tool, cross-project memory for Codex CLI. Start an idea in ChatGPT, pick it up in Codex with full context carried over. Track leads and relationships as durable memory instead of a separate CRM. Organize memory into separate workspaces for personal, team, or client contexts. Recalls prior decisions and conventions across sessions, and persists new ones as you work.",
         "openai": "Recall and save your memories, preferences and project decisions across ChatGPT, Codex and other connected AI tools with Empirical."
       },
@@ -61,6 +61,7 @@
         "shortDescription": "Memory across your AI tools",
         "longDescription": "Empirical keeps your memories, preferences and project decisions available across ChatGPT, Codex and other connected AI tools. Save context you want to remember, find it later, and update it as your plans change. Organize personal and shared context into workspaces, and explore connections between memories. Requires an Empirical account and an authenticated connection. Access is limited to workspaces available to your connected account. Memory search can return partial matches; inspect the sources before relying on a result. Empirical stores and processes the memory content you choose to save. Do not store passwords, API keys or other secrets.",
         "websiteURL": "https://empirical.gauzza.com",
+        "documentationURL": "https://empirical.gauzza.com/docs",
         "supportURL": "https://empirical.gauzza.com/support",
         "privacyPolicyURL": "https://empirical.gauzza.com/privacy",
         "termsOfServiceURL": "https://empirical.gauzza.com/terms",

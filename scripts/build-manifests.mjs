@@ -39,13 +39,21 @@ const claudePlugin = (plugin) => ({
   displayName: plugin.displayName,
   version: plugin.version,
   description: describe(plugin, 'claude'),
-  author: shared.author,
+  author: { ...shared.author, url: shared.homepage },
   homepage: shared.homepage,
   repository: shared.repository,
   license: shared.license,
   keywords: plugin.keywords,
   skills: shared.skills,
   ...(plugin.mcpServers ? { mcpServers: plugin.mcpServers } : {}),
+  // Anthropic's directory reads these from plugin.json; Claude Code ignores them at load.
+  ...Object.fromEntries([
+    ['icon', plugin.catalog?.logo],
+    ['documentationUrl', plugin.catalog?.documentationURL],
+    ['supportUrl', plugin.catalog?.supportURL],
+    ['privacyPolicyUrl', plugin.catalog?.privacyPolicyURL],
+    ['termsOfServiceUrl', plugin.catalog?.termsOfServiceURL],
+  ].filter(([, v]) => v)),
 });
 
 // Codex CLI: .codex-plugin/plugin.json

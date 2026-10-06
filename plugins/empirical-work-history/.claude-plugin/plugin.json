@@ -5,7 +5,8 @@
   "description": "Concise completed-work summaries for future agents.",
   "author": {
     "name": "Matt Gauzza",
-    "email": "mgauzza@gmail.com"
+    "email": "mgauzza@gmail.com",
+    "url": "https://empirical.gauzza.com"
   },
   "homepage": "https://empirical.gauzza.com",
   "repository": "https://github.com/mattgauzza/empirical-memory-plugin",
