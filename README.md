@@ -17,7 +17,7 @@ don't have to re-explain context you've already given elsewhere.
 - `empirical-work-history`: optional concise completed-work summaries.
 - `empirical-scar-tissue`: optional recurring failure patterns and prevention guidance.
 - `empirical-todo`: optional project-based todos with status and next actions.
-- `empirical-voice`: optional writing in your own saved Empirical writing voice.
+- `empirical-voice`: optional writing in your own saved Empirical writing voice (needs a voice saved with the paid Writing Voice interview).
 
 Each capability is a separate marketplace plugin, so users can install or remove optional
 capabilities without changing the core memory connection.
@@ -92,9 +92,10 @@ If the CLI is already installed and you only need to install or refresh the nati
 empirical plugin install codex       # or copilot, claude, or all
 ```
 
-Add optional capabilities explicitly with `--work-history`, `--scar-tissue`, `--todo`, or
-`--all-optional`. `empirical-voice` is installed with the native marketplace command instead:
-`claude plugin install empirical-voice@empirical-memory --scope user`.
+Add optional capabilities explicitly with `--work-history`, `--scar-tissue`, `--todo`, `--voice`, or
+`--all-optional`. For example, `empirical plugin install claude --voice` installs `empirical-voice`,
+which writes in your saved Empirical writing voice (a paid feature; it needs a voice saved first).
+You can also use the native marketplace command: `claude plugin install empirical-voice@empirical-memory --scope user`.
 
 This does not run the full MCP/auth questionnaire or modify global instruction files.
 
