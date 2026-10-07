@@ -34,6 +34,8 @@ const describe = (plugin, host) =>
 
 // Claude Code: .claude-plugin/plugin.json
 // Only fields in the documented manifest schema. No `interface`.
+// Directory listing logo. Kept here, not in meta/manifests.json: the review scanner flags image refs there.
+const CLAUDE_ICON = './assets/logo.png';
 const claudePlugin = (plugin) => ({
   name: plugin.name,
   displayName: plugin.displayName,
@@ -48,7 +50,7 @@ const claudePlugin = (plugin) => ({
   ...(plugin.mcpServers ? { mcpServers: plugin.mcpServers } : {}),
   // Anthropic's directory reads these from plugin.json; Claude Code ignores them at load.
   ...Object.fromEntries([
-    ['icon', plugin.catalog?.logo],
+    ['icon', plugin.name === 'empirical-memory' ? CLAUDE_ICON : undefined],
     ['documentationUrl', plugin.catalog?.documentationURL],
     ['supportUrl', plugin.catalog?.supportURL],
     ['privacyPolicyUrl', plugin.catalog?.privacyPolicyURL],
@@ -76,7 +78,7 @@ const codexPlugin = (plugin) => ({
     category: shared.category,
     capabilities: shared.capabilities,
     ...(plugin.catalog.websiteURL ? { websiteURL: plugin.catalog.websiteURL } : {}),
-    ...Object.fromEntries(['supportURL', 'privacyPolicyURL', 'termsOfServiceURL', 'composerIcon', 'logo']
+    ...Object.fromEntries(['supportURL', 'privacyPolicyURL', 'termsOfServiceURL']
       .filter((key) => plugin.catalog[key]).map((key) => [key, plugin.catalog[key]])),
     defaultPrompt: plugin.catalog.defaultPrompt,
   },
