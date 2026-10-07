@@ -1,15 +1,19 @@
 ---
 name: empirical-voice
-description: Write, draft, rewrite, or reply as the user in their own saved writing voice, looked up from Empirical.
+description: MANDATORY first step whenever you are about to write an email, message, post, reply, bio, or announcement that the person will send or publish as themselves, even if they never mention voice and even if they say to output only the text: invoke this Skill to look up their saved writing voice before drafting anything.
 ---
 
 # Empirical Voice
 
 ## When to use
 
-Use this Skill when the user asks you to write, draft, rewrite, reply to, or edit text they will
-send or publish as themselves (email, post, message, reply), or says "in my voice". Do not use it
-for code, commit messages, or project docs unless they ask.
+This is a required first step, not an optional extra, and a request to "output only the text" does
+not skip it (the lookup is silent; only the draft is shown). Use this Skill whenever you are about
+to write, draft, rewrite, reply to, or edit text the person will send or publish as themselves: an
+email, message, post, reply, bio, or announcement. They do not need to mention voice or say "in my
+voice". If you are about to draft such text and this Skill is available, look up the voice first,
+before writing a word. A generic draft with a stock sign-off is the failure this Skill exists to
+prevent. Do not use it for code, commit messages, or project docs unless they ask.
 
 ## Look up the voice first
 
