@@ -1,0 +1,34 @@
+{
+  "name": "empirical-voice",
+  "version": "1.0.0",
+  "description": "Write in the user's own saved writing voice, looked up from Empirical.",
+  "author": {
+    "name": "Matt Gauzza",
+    "email": "mgauzza@gmail.com"
+  },
+  "homepage": "https://empirical.gauzza.com",
+  "repository": "https://github.com/mattgauzza/empirical-memory-plugin",
+  "license": "MIT",
+  "keywords": [
+    "memory",
+    "writing",
+    "voice",
+    "writing-voice",
+    "productivity"
+  ],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Empirical Voice",
+    "shortDescription": "Write as you, using your saved writing voice.",
+    "longDescription": "Look up the writing voice saved by the Empirical Writing Voice interview and apply it when drafting or rewriting email, posts, and messages the user will send as themselves. Never invents a voice or facts.",
+    "developerName": "Empirical",
+    "category": "Productivity",
+    "capabilities": [
+      "Read",
+      "Write"
+    ],
+    "defaultPrompt": [
+      "Rewrite this in my voice."
+    ]
+  }
+}

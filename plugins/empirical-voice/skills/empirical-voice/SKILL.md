@@ -1,0 +1,66 @@
+---
+name: empirical-voice
+description: Write, draft, rewrite, or reply as the user in their own saved writing voice, looked up from Empirical.
+---
+
+# Empirical Voice
+
+## When to use
+
+Use this Skill when the user asks you to write, draft, rewrite, reply to, or edit text they will
+send or publish as themselves (email, post, message, reply), or says "in my voice". Do not use it
+for code, commit messages, or project docs unless they ask.
+
+## Look up the voice first
+
+Every voice memory is tagged `writing-voice`. A voice holds roughly 20 to 70 memories, so use a
+high topK.
+
+```text
+query_memories({ query: "how this person writes", tags: ["writing-voice"], topK: 50 })
+```
+
+CLI equivalent:
+
+```text
+empirical memory query --match "how this person writes" --tags writing-voice --top-k 50
+```
+
+The voice lives in the one workspace the person picked in the interview, which may not be the
+active one. If nothing comes back, retry once across workspaces (`workspaceIds` from
+`list_workspaces`, or `--all-workspaces` on the CLI). A filtered empty result is not proof of
+absence.
+
+If there is still no voice, say so and offer the interview (a paid feature): MCP
+`start_guided_setup` with setupId `setup_writing_voice`, or `empirical setup run setup_writing_voice`.
+Do not guess a voice, and do not write as if you had one.
+
+## Read order
+
+1. The hub: tags `writing-voice` and `voice`, summary starts with `How this person writes:`.
+2. The things to never do: tags `writing-rule` and `avoid`.
+3. The rules for the medium you are writing in: one of `posts`, `email`, `docs`, `code comments`,
+   `chat`.
+4. The remaining `writing-rule` memories.
+
+Mention which workspace the voice came from only if it differs from the active one.
+
+## Apply it
+
+- Obey the avoid rules absolutely. The rules shape the draft. The hub breaks ties.
+- Signature phrases from the person's own answers (a sign-off, a warm phrase) are options. Use at
+  most one per message and only when it fits; stacking them reads as caricature.
+- Never invent numbers, dates, names, or facts the person did not give you. Leave a bracketed
+  placeholder like [date] and tell them.
+- If `ai-tropes` rules exist (paraphrased from tropes.fyi by ossama.is), check the final draft
+  against them before showing it. If a rule cannot be satisfied, say so.
+
+## After the draft
+
+End with one line naming the rules you used (names only). Offer to save a correction as a new rule
+only if the person corrects the same thing twice, and ask before writing to their voice. Never edit
+or delete voice memories on your own.
+
+## Team workspaces
+
+A team workspace may hold one member's voice. Use it only when the person says it is theirs.

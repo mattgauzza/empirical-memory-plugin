@@ -169,6 +169,31 @@
           "Run the guided interview for a blueprint."
         ]
       }
+    },
+    {
+      "name": "empirical-voice",
+      "displayName": "Empirical Voice",
+      "version": "1.0.0",
+      "source": "./plugins/empirical-voice",
+      "agentsPath": "./plugins/empirical-voice",
+      "keywords": [
+        "memory",
+        "writing",
+        "voice",
+        "writing-voice",
+        "productivity"
+      ],
+      "entryDescription": "Write in the user's own saved writing voice, looked up from Empirical.",
+      "descriptions": {
+        "default": "Write in the user's own saved writing voice, looked up from Empirical."
+      },
+      "catalog": {
+        "shortDescription": "Write as you, using your saved writing voice.",
+        "longDescription": "Look up the writing voice saved by the Empirical Writing Voice interview and apply it when drafting or rewriting email, posts, and messages the user will send as themselves. Never invents a voice or facts.",
+        "defaultPrompt": [
+          "Rewrite this in my voice."
+        ]
+      }
     }
   ]
 }

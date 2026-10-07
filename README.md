@@ -17,6 +17,7 @@ don't have to re-explain context you've already given elsewhere.
 - `empirical-work-history`: optional concise completed-work summaries.
 - `empirical-scar-tissue`: optional recurring failure patterns and prevention guidance.
 - `empirical-todo`: optional project-based todos with status and next actions.
+- `empirical-voice`: optional writing in your own saved Empirical writing voice.
 
 Each capability is a separate marketplace plugin, so users can install or remove optional
 capabilities without changing the core memory connection.
@@ -27,6 +28,7 @@ Package documentation:
 - [Work History](./plugins/empirical-work-history/README.md)
 - [Scar Tissue](./plugins/empirical-scar-tissue/README.md)
 - [Todo](./plugins/empirical-todo/README.md)
+- [Voice](./plugins/empirical-voice/README.md)
 
 ## Install
 
@@ -91,7 +93,8 @@ empirical plugin install codex       # or copilot, claude, or all
 ```
 
 Add optional capabilities explicitly with `--work-history`, `--scar-tissue`, `--todo`, or
-`--all-optional`.
+`--all-optional`. `empirical-voice` is installed with the native marketplace command instead:
+`claude plugin install empirical-voice@empirical-memory --scope user`.
 
 This does not run the full MCP/auth questionnaire or modify global instruction files.
 

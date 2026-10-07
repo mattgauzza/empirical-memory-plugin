@@ -38,6 +38,12 @@
       "description": "Guided-interview blueprint personalization from the user's real answers.",
       "version": "1.0.0",
       "source": "./plugins/empirical-guided-setup"
+    },
+    {
+      "name": "empirical-voice",
+      "description": "Write in the user's own saved writing voice, looked up from Empirical.",
+      "version": "1.0.0",
+      "source": "./plugins/empirical-voice"
     }
   ]
 }
