@@ -173,7 +173,7 @@
     {
       "name": "empirical-voice",
       "displayName": "Empirical Voice",
-      "version": "1.0.2",
+      "version": "1.0.3",
       "source": "./plugins/empirical-voice",
       "agentsPath": "./plugins/empirical-voice",
       "keywords": [

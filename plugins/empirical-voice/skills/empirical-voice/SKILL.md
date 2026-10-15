@@ -56,8 +56,11 @@ Mention which workspace the voice came from only if it differs from the active o
 - Obey the avoid rules absolutely. The rules shape the draft. The hub breaks ties.
 - Signature phrases from the person's own answers (a sign-off, a warm phrase) are options. Use at
   most one per message and only when it fits; stacking them reads as caricature.
-- Never invent numbers, dates, names, or facts the person did not give you. Leave a bracketed
-  placeholder like [date] and tell them.
+- Never invent numbers, dates, names, or facts the person did not give you. This always holds.
+  What you do about a missing fact depends on their voice: if they have their own rule for it
+  (for example "If a fact is missing, leave the sentence out" or "Do not use bracketed
+  placeholders"), follow that rule and mention what you left out. Only when their voice has no such
+  rule, leave a bracketed placeholder like [date] and tell them.
 - The opening image and any anecdote must come from the person's brief or their own words. Never
   invent a personal anecdote or first-person experience (a squeaky bike chain, a rainy commute, a
   thing you "kept meaning to fix"). If there is no image to use, open with a neutral second-person
