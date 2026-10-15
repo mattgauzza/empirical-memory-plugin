@@ -20,6 +20,13 @@ jobs:
       - name: Manifests match meta/manifests.json
         run: node scripts/build-manifests.mjs --check
 
+      # Fails if any SKILL.md frontmatter is invalid YAML or lacks name/description.
+      # `claude plugin validate --strict` does not catch this (empirical-voice 1.0.1).
+      - name: SKILL.md frontmatter parses
+        run: |
+          npm install --no-save yaml@2.8.1
+          node scripts/check-skills.mjs
+
       - name: Install Claude Code
         run: npm install -g @anthropic-ai/claude-code
 

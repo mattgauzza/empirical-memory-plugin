@@ -159,6 +159,7 @@ Do not hand-edit those files. Edit `meta/manifests.json`, then regenerate:
 node scripts/build-manifests.mjs           # write the manifests
 node scripts/build-manifests.mjs --check    # verify nothing drifted (CI runs this)
 claude plugin validate . --strict           # same validator the plugin directory runs
+npm install --no-save yaml && node scripts/check-skills.mjs   # every SKILL.md frontmatter must be valid YAML
 ```
 
 To bump a version, change it in one place: the plugin's `version` in
