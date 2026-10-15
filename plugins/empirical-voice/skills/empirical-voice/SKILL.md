@@ -35,9 +35,11 @@ active one. If nothing comes back, retry once across workspaces (`workspaceIds` 
 `list_workspaces`, or `--all-workspaces` on the CLI). A filtered empty result is not proof of
 absence.
 
-If there is still no voice, say so and offer the interview (a paid feature): MCP
-`start_guided_setup` with setupId `setup_writing_voice`, or `empirical setup run setup_writing_voice`.
-Do not guess a voice, and do not write as if you had one.
+If there is still no voice, say so in the first line of your reply ("You don't have a saved
+writing voice yet."), then ask: "Want me to start the Writing Voice interview now? It is paid and
+uses Empirical Tokens." Only on a yes, call MCP `start_guided_setup` with setupId
+`setup_writing_voice`, or run `empirical setup run setup_writing_voice` on the CLI. A neutral draft
+is allowed only after they decline. Do not guess a voice, and do not write as if you had one.
 
 ## Read order
 
@@ -56,6 +58,10 @@ Mention which workspace the voice came from only if it differs from the active o
   most one per message and only when it fits; stacking them reads as caricature.
 - Never invent numbers, dates, names, or facts the person did not give you. Leave a bracketed
   placeholder like [date] and tell them.
+- The opening image and any anecdote must come from the person's brief or their own words. Never
+  invent a personal anecdote or first-person experience (a squeaky bike chain, a rainy commute, a
+  thing you "kept meaning to fix"). If there is no image to use, open with a neutral second-person
+  scene or a [bracketed image] placeholder, and say so.
 - If `ai-tropes` rules exist (paraphrased from tropes.fyi by ossama.is), check the final draft
   against them before showing it. If a rule cannot be satisfied, say so.
 
@@ -67,4 +73,7 @@ or delete voice memories on your own.
 
 ## Team workspaces
 
-A team workspace may hold one member's voice. Use it only when the person says it is theirs.
+A team workspace may hold one member's voice. If the voice you found sits in a team workspace and
+its memory author is not the person, say which workspace it came from and ask whether that voice
+is theirs. Do not draft until they answer. If the memory's author is the person, no question is
+needed. If they say it is not theirs, treat it as no saved voice.

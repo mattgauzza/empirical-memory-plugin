@@ -37,6 +37,7 @@ Package documentation:
 ```
 claude plugin marketplace add mattgauzza/empirical-memory-plugin
 claude plugin install empirical-memory --scope user
+claude plugin install empirical-voice@empirical-memory --scope user   # optional, writing voice
 ```
 
 **Codex CLI**

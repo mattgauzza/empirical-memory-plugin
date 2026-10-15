@@ -7,8 +7,10 @@ Optional Empirical plugin that writes in your own saved writing voice.
 - Looks up the voice you saved with the Empirical Writing Voice interview before it writes for you.
 - Applies your rules for the medium (posts, email, docs, code comments, chat) and obeys your
   things-to-never-do absolutely.
-- Never invents a voice if none is saved: it offers the interview instead.
-- Never invents numbers, dates, names, or facts; it leaves a bracketed placeholder and tells you.
+- Never invents a voice if none is saved: it says so first and asks whether to start the paid
+  interview (it uses Empirical Tokens) before writing a neutral draft.
+- Never invents numbers, dates, names, facts, or personal anecdotes; it leaves a bracketed
+  placeholder and tells you.
 - Never edits or deletes your voice memories on its own.
 
 The voice is stored as memories tagged `writing-voice` in the one workspace you picked during
@@ -108,14 +110,14 @@ the voice up first and end with a line naming the rules used.
 - **The skill did not fire.** Check that the plugin is installed (`empirical plugin check`),
   restart the agent session, then ask "what do you know about how I write?" to trigger it
   directly. Code, commit messages, and project docs do not trigger it unless you ask.
-- **No voice found.** The agent says so and offers the interview. Check your Empirical memories
+- **No voice found.** The agent says so in its first line and asks whether to start the interview. Check your Empirical memories
   for ones tagged `writing-voice`; if the install failed, confirm the draft again with
   `empirical setup resume <sessionId>` and `empirical setup confirm <sessionId> <draftHash>`.
 - **Wrong workspace.** The voice is in the workspace you picked in the interview. Name that
   workspace in your request, or run `empirical workspace use` for it.
-- **Team workspace.** A team workspace holds one voice, set up by one member. The plugin uses it
-  only when you say it is yours. If a member already has a voice there, the interview refuses to
-  create a second one.
+- **Team workspace.** A team workspace holds one voice, set up by one member. The plugin names the
+  workspace and asks whether the voice is yours before drafting, unless you authored it. If a member already has a voice there, the interview
+  refuses to create a second one.
 
 ## Privacy
 
