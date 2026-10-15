@@ -1,7 +1,7 @@
 {
   "name": "empirical-voice",
   "displayName": "Empirical Voice",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Write in the user's own saved writing voice, looked up from Empirical.",
   "author": {
     "name": "Matt Gauzza",

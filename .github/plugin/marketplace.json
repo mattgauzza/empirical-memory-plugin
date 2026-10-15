@@ -42,7 +42,7 @@
     {
       "name": "empirical-voice",
       "description": "Write in the user's own saved writing voice, looked up from Empirical.",
-      "version": "1.0.1",
+      "version": "1.0.2",
       "source": "./plugins/empirical-voice"
     }
   ]

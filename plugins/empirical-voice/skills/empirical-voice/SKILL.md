@@ -1,6 +1,6 @@
 ---
 name: empirical-voice
-description: MANDATORY first step whenever you are about to write an email, message, post, reply, bio, or announcement that the person will send or publish as themselves, even if they never mention voice and even if they say to output only the text: invoke this Skill to look up their saved writing voice before drafting anything.
+description: "MANDATORY first step whenever you are about to write an email, message, post, reply, bio, or announcement that the person will send or publish as themselves, even if they never mention voice and even if they say to output only the text: invoke this Skill to look up their saved writing voice before drafting anything."
 ---
 
 # Empirical Voice
