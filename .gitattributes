@@ -4,3 +4,15 @@
 *.json text eol=lf
 *.mjs  text eol=lf
 *.yml  text eol=lf
+
+# Exclude OS metadata from GitHub/source archives, even if force-added to Git.
+.DS_Store export-ignore
+**/.DS_Store export-ignore
+Thumbs.db export-ignore
+**/Thumbs.db export-ignore
+Desktop.ini export-ignore
+**/Desktop.ini export-ignore
+__MACOSX export-ignore
+**/__MACOSX export-ignore
+._* export-ignore
+**/._* export-ignore

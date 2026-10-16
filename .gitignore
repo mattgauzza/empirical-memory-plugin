@@ -1,2 +1,9 @@
 docs/superpowers/
 dist/
+
+# Operating-system metadata must never enter plugin submissions.
+.DS_Store
+Thumbs.db
+Desktop.ini
+__MACOSX/
+._*
