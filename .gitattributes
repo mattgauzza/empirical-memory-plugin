@@ -5,6 +5,9 @@
 *.mjs  text eol=lf
 *.yml  text eol=lf
 
+# Build and validation tools are not part of the installed plugin.
+scripts export-ignore
+
 # Exclude OS metadata from GitHub/source archives, even if force-added to Git.
 .DS_Store export-ignore
 **/.DS_Store export-ignore
