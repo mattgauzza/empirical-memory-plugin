@@ -193,6 +193,28 @@ Use these when connected: `get_empirical_policy`, `query_memories`, `list_memori
 graph work, use `get_memory_neighbors` and `update_memory_relationships` when available instead of
 reconstructing relationships through many unrelated calls.
 
+## Files on a memory
+
+A memory can carry files, up to 20 per memory at 25MB each. `list_memory_attachments` shows what
+is there; `attach_file_to_memory` attaches one from a public https URL that the server fetches.
+
+- **You cannot upload bytes.** Tool arguments are JSON, so a file of any real size cannot travel
+  as one. If the user's file is on their own machine, tell them the command rather than guessing
+  at a URL: `empirical memory attachment add --memory-id <id> --file <path>`.
+- **Deleting is reversible for 30 days.** `delete_memory_attachment` needs `confirm: true`, and
+  its answer carries the date the bytes are actually removed. Say that date when you relay it, and
+  use `restore_memory_attachment` if the user changes their mind inside the window.
+- Attachments need a paid plan. A refusal naming attachment storage is a plan limit, not a bug.
+
+## Pulling a whole idea out
+
+When items nest — an idea with sub-ideas under it — use `get_memory_tree` to get the item and
+everything beneath it in ONE call, as a readable document plus its nodes. Prefer it over walking
+`get_memory_neighbors` hop by hop: neighbour walks cap at two hops, cannot see sibling order, and
+cost a round trip per level. If the answer says `truncated: true`, say so rather than presenting a
+partial document as the whole thing. Items nest only in a workspace that has a shape; for an
+ordinary memory this returns that one memory, which is the answer, not an error.
+
 ## Reminders — set them, relay them, close them
 
 Any memory can carry a due date. Empirical then brings it back: an email with a calendar entry
